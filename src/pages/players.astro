@@ -298,23 +298,25 @@ const players = [
       </div>
       
       <!-- Perfil -->
-      <div class="absolute" style="top: 66.6%; left: 30%; transform: rotate(-3deg);">
+      <div id="perfilContainer" class="absolute" style="top: 66.6%; left: 30%; transform: rotate(-3deg);">
         <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
-      <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-11 h-11" />
+          <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-11 h-11" />
+        </a>
       </div>
 
       <!-- Twitter -->
-      <div class="absolute" style="top: 67%; left: 20%; transform: rotate(-3deg);}">
+      <div id="twitterContainer" class="absolute" style="top: 67%; left: 20%; transform: rotate(-3deg);">
         <a id="selectedPlayerTwitter" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
-      <img src={`${base}twitter-icon.svg`} alt="Twitter" class="w-12 h-12" />
+          <img src={`${base}twitter-icon.svg`} alt="Twitter" class="w-12 h-12" />
+        </a>
       </div>
 
       <!-- Twitch -->
-      <div class="absolute" style="top: 66%; left: 39%; transform: rotate(-3deg);}">
-        <a id="selectedPlayerTwitch" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
-      <img src={`${base}twitch-icon.svg`} alt="Twitch" class="w-12 h-12" />
-  </a>
-</div>
+      <div id="twitchContainer" class="absolute" style="top: 66%; left: 39%; transform: rotate(-3deg);">
+        <a id="selectedPlayerTwitch" href={players[0].twitch} target="_blank" class="hover:opacity-80 transition">
+          <img src={`${base}twitch-icon.svg`} alt="Twitch" class="w-12 h-12" />
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -387,10 +389,19 @@ const players = [
           twitch: document.getElementById('selectedPlayerTwitch')
         };
 
+        // Contenedores de redes sociales
+        const socialContainers = {
+          perfil: document.getElementById('perfilContainer'),
+          twitter: document.getElementById('twitterContainer'),
+          twitch: document.getElementById('twitchContainer')
+        };
+
         // Añadir efecto de fade
         Object.values(elements).forEach(el => {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(10px)';
+          if (el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+          }
         });
 
         setTimeout(() => {
@@ -400,20 +411,41 @@ const players = [
           elements.pp.textContent = player.pp;
           elements.chile.textContent = player.chile;
           elements.accuracy.textContent = player.accuracy;
-          elements.perfil.href = player.perfil;
-          elements.twitter.href = player.twitter;
-          elements.twitch.href = player.twitch;
+
+          // Mostrar u ocultar redes sociales según si tienen contenido
+          if (player.perfil) {
+            socialContainers.perfil.style.display = 'block';
+            elements.perfil.href = player.perfil;
+          } else {
+            socialContainers.perfil.style.display = 'none';
+          }
+
+          if (player.twitter) {
+            socialContainers.twitter.style.display = 'block';
+            elements.twitter.href = player.twitter;
+          } else {
+            socialContainers.twitter.style.display = 'none';
+          }
+
+          if (player.twitch) {
+            socialContainers.twitch.style.display = 'block';
+            elements.twitch.href = player.twitch;
+          } else {
+            socialContainers.twitch.style.display = 'none';
+          }
 
           Object.values(elements).forEach((el, index) => {
-            setTimeout(() => {
-              el.style.transition = 'all 0.3s ease';
-              el.style.opacity = '1';
-              if (el.id === 'selectedPlayerName') {
-                el.style.transform = 'translateY(0) rotate(-3deg)';
-              } else {
-                el.style.transform = 'translateY(0)';
-              }
-            }, index * 50);
+            if (el) {
+              setTimeout(() => {
+                el.style.transition = 'all 0.3s ease';
+                el.style.opacity = '1';
+                if (el.id === 'selectedPlayerName') {
+                  el.style.transform = 'translateY(0) rotate(-3deg)';
+                } else {
+                  el.style.transform = 'translateY(0)';
+                }
+              }, index * 50);
+            }
           });
         }, 150);
       }
