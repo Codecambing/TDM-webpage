@@ -298,31 +298,21 @@ const players = [
       </div>
       
       <!-- Perfil -->
-      {players[0].perfil && (
-      <div class="absolute flex items-center gap-2" style="top: 68%; left: 21%; transform: rotate(-3deg);" id="perfilContainer">
+      <div class="absolute" style="top: 66.6%; left: 30%; transform: rotate(-3deg);">
         <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
-          <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-10 h-10" />
-        </a>
+      <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-11 h-11" />
       </div>
-    )}
 
       <!-- Twitter -->
-      {players[0].twitter && (
-      <div class="absolute flex items-center gap-2" style="top: 74%; right: 8%;" id="twitterContainer">
+      <div class="absolute" style="top: 67%; left: 20%; transform: rotate(-3deg);}">
         <a id="selectedPlayerTwitter" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
-          <img src={`${base}twitter-icon.svg`} alt="Twitter" class="w-6 h-6" />
-        </a>
+      <img src={`${base}twitter-icon.svg`} alt="Twitter" class="w-12 h-12" />
       </div>
-    )}
 
       <!-- Twitch -->
-      {players[0].twitch && (
-      <div class="absolute flex items-center gap-2" style="top: 82%; right: 8%;" id="twitchContainer">
-        <a id="selectedPlayerTwitch" href={players[0].twitch} target="_blank" class="hover:opacity-80 transition">
-          <img src={`${base}twitch-icon.svg`} alt="Twitch" class="w-6 h-6" />
-        </a>
-      </div>
-    )}
+      <div class="absolute" style="top: 66%; left: 39%; transform: rotate(-3deg);}">
+        <a id="selectedPlayerTwitch" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
+      <img src={`${base}twitch-icon.svg`} alt="Twitch" class="w-12 h-12" />
   </a>
 </div>
     </div>
@@ -369,7 +359,7 @@ const players = [
   }
 </style>
 
-<script define:vars={{ players, base }}>
+<script define:vars={{ players }}>
   const playerCards = document.querySelectorAll('.player-card');
 
   playerCards.forEach(card => {
@@ -384,81 +374,46 @@ const players = [
         // Marcar como seleccionado
         card.dataset.selected = "true";
         
-        // Actualizar datos
+        // Actualizar datos con animación
         const elements = {
           photo: document.getElementById('selectedPlayerPhoto'),
           name: document.getElementById('selectedPlayerName'),
           rank: document.getElementById('selectedPlayerRank'),
-          chile: document.getElementById('selectedPlayerChile'),
+          chile: document.getElementById('selectedPlayerRankChile'),
           pp: document.getElementById('selectedPlayerPP'),
           accuracy: document.getElementById('selectedPlayerAccuracy'),
-        };
-
-        // Contenedores de redes sociales
-        const socialContainers = {
-          perfil: document.getElementById('perfilContainer'),
-          twitter: document.getElementById('twitterContainer'),
-          twitch: document.getElementById('twitchContainer')
-        };
-
-        // Enlaces de redes sociales
-        const socialLinks = {
           perfil: document.getElementById('selectedPlayerPerfil'),
           twitter: document.getElementById('selectedPlayerTwitter'),
           twitch: document.getElementById('selectedPlayerTwitch')
         };
 
-        // Fade out
+        // Añadir efecto de fade
         Object.values(elements).forEach(el => {
-          if (el) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(10px)';
-          }
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
         });
 
         setTimeout(() => {
           elements.photo.src = player.photo;
           elements.name.textContent = player.name;
           elements.rank.textContent = player.rank;
-          elements.chile.textContent = player.chile;
           elements.pp.textContent = player.pp;
+          elements.chile.textContent = player.chile;
           elements.accuracy.textContent = player.accuracy;
+          elements.perfil.href = player.perfil;
+          elements.twitter.href = player.twitter;
+          elements.twitch.href = player.twitch;
 
-          // Mostrar u ocultar redes sociales
-          if (player.perfil) {
-            socialContainers.perfil.style.display = 'flex';
-            socialLinks.perfil.href = player.perfil;
-          } else {
-            socialContainers.perfil.style.display = 'none';
-          }
-
-          if (player.twitter) {
-            socialContainers.twitter.style.display = 'flex';
-            socialLinks.twitter.href = player.twitter;
-          } else {
-            socialContainers.twitter.style.display = 'none';
-          }
-
-          if (player.twitch) {
-            socialContainers.twitch.style.display = 'flex';
-            socialLinks.twitch.href = player.twitch;
-          } else {
-            socialContainers.twitch.style.display = 'none';
-          }
-
-          // Fade in
           Object.values(elements).forEach((el, index) => {
-            if (el) {
-              setTimeout(() => {
-                el.style.transition = 'all 0.3s ease';
-                el.style.opacity = '1';
-                if (el.id === 'selectedPlayerName') {
-                  el.style.transform = 'translateY(0) rotate(-3deg)';
-                } else {
-                  el.style.transform = 'translateY(0)';
-                }
-              }, index * 50);
-            }
+            setTimeout(() => {
+              el.style.transition = 'all 0.3s ease';
+              el.style.opacity = '1';
+              if (el.id === 'selectedPlayerName') {
+                el.style.transform = 'translateY(0) rotate(-3deg)';
+              } else {
+                el.style.transform = 'translateY(0)';
+              }
+            }, index * 50);
           });
         }, 150);
       }
