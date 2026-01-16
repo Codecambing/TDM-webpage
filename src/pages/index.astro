@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+
+  <!-- Logo del torneo -->
+  <section class="flex justify-center items-center py-12">
+    <img src="/Logo.svg" alt="Logo Torneo" class="w-128 h-128" />
+  </section>
+
+  <!-- Links importantes -->
+  <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6 pb-24">
+
+    <a href="#" class="link-button sheet bg-white shadow rounded-xl p-6 hover:scale-105 hover:bg-green-100 transition font-semibold text-xl">
+      <span>Sheet</span>
+      <img src="/sheet-icon.svg" alt="" class="link-icon" />
+    </a>
+
+    <a href="#" class="link-button forum bg-white shadow rounded-xl p-6 hover:scale-105 hover:bg-purple-200 transition font-semibold text-xl">
+      <span>Forum Post</span>
+      <img src="/forum-icon.svg" alt="" class="link-icon" />
+    </a>
+
+    <a href="https://x.com/TDMInvitational" class="link-button twitter bg-white shadow rounded-xl p-6 hover:scale-105 hover:bg-sky-200 transition font-semibold text-xl">
+      <span>Twitter</span>
+      <img src="/twitter-icon.svg" alt="" class="link-icon" />
+    </a>
+
+    <a href="https://www.twitch.tv/mathi" class="link-button twitch bg-white shadow rounded-xl p-6 hover:scale-105 hover:bg-violet-400 transition font-semibold text-xl">
+      <span>Twitch</span>
+      <img src="/twitch-icon.svg" alt="" class="link-icon" />
+    </a>
+
+  </section>
+
+</BaseLayout>
+
+<style>
+  .link-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .link-icon {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .link-button:hover .link-icon {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>

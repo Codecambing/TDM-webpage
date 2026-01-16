@@ -1,0 +1,59 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torre del Mago Invitacional</title>
+</head>
+
+<body>
+  <Navbar />
+
+  <main class="min-h-screen">
+    <slot />
+  </main>
+
+  <footer class="bg-[var(--color-navbar)] mt-24">
+  <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+
+    <!-- Créditos -->
+    <div>
+      <h3 class="font-[Cinzel] text-lg mb-3"></h3>
+      <p>Organizado por Torre del Mago</p>
+      <p>Diseño y desarrollo realizado por Intercambing</p>
+    </div>
+
+    <!-- Información -->
+    <div>
+      <h3 class="font-[Cinzel] text-lg mb-3">Información</h3>
+      <ul class="space-y-2">
+        <li><a href="/spreadsheet" class="hover:text-[var(--color-accent)]">Spreadsheet</a></li>
+        <li><a href="/staff" class="hover:text-[var(--color-accent)]">Staff</a></li>
+        <li><a href="/rules" class="hover:text-[var(--color-accent)]">Reglas</a></li>
+      </ul>
+    </div>
+
+    <!-- Redes -->
+    <div>
+      <h3 class="font-[Cinzel] text-lg mb-3">Redes</h3>
+      <ul class="space-y-2">
+        <li><a href="https://x.com/TDMInvitational" class="hover:text-[var(--color-accent)]">Twitter</a></li>
+        <li><a href="https://www.twitch.tv/mathi" class="hover:text-[var(--color-accent)]">Twitch</a></li>
+        <li><a href="#" class="hover:text-[var(--color-accent)]">Forum Post</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Línea inferior -->
+  <div class="border-t border-black/10 text-center py-4 text-xs">
+    © 2026 Torre del Mago · Todos los derechos reservados
+  </div>
+</footer>
+</body>
+</html>

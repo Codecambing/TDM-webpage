@@ -1,0 +1,420 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const players = [
+  {
+    id: 1,
+    name: "Lasseh",
+    photo: "/pfps/lasseh.jpg",
+    rank: "#3,909",
+    chile: "#64",
+    pp: "11,114pp",
+    accuracy: "97.68%",
+    perfil: "https://osu.ppy.sh/users/4881251",
+    twitter: "https://x.com/lasseh__",
+    twitch: "https://www.twitch.tv/lassseh"
+  },
+  {
+    id: 2,
+    name: "Intercambing",
+    photo: "/pfps/intercambing.jpg",
+    rank: "#96",
+    chile: "#3",
+    pp: "19,005pp",
+    accuracy: "98.84%",
+    perfil: "https://osu.ppy.sh/users/2546001",
+    twitter: "https://x.com/intercambing",
+    twitch: "https://www.twitch.tv/intercambing_"
+  },
+  {
+    id: 3,
+    name: "siiphs",
+    photo: "/pfps/siiphs.gif",
+    rank: "#1,989",
+    chile: "#33",
+    pp: "11,567pp",
+    accuracy: "98.70%",
+    perfil: "https://osu.ppy.sh/users/11786864",
+    twitter: "https://x.com/siiphs",
+    twitch: "https://www.twitch.tv/siiphs"
+  },
+  {
+    id: 4,
+    name: "suntanCTM",
+    photo: "/pfps/suntan.jpg",
+    rank: "#426",
+    chile: "#9",
+    pp: "15,612pp",
+    accuracy: "98.63%",
+    perfil: "https://osu.ppy.sh/users/19998548",
+    twitter: "https://x.com/suntanctm",
+    twitch: "https://www.twitch.tv/suntanctm"
+  },
+  {
+    id: 5,
+    name: "paxyh",
+    photo: "/pfps/paxyh.jpg",
+    rank: "#6,552",
+    chile: "#92",
+    pp: "10,133pp",
+    accuracy: "98.29%",
+    perfil: "https://osu.ppy.sh/users/18036760",
+    twitter: "https://x.com/paxyh1",
+    twitch: "https://www.twitch.tv/paxyhhh",
+  },
+  {
+    id: 6,
+    name: "Mathi",
+    photo: "/pfps/mathi.jpg",
+    rank: "#83",
+    chile: "#2",
+    pp: "19,392pp",
+    accuracy: "98.93%",
+    perfil: "https://osu.ppy.sh/users/5339515",
+    twitter: "https://x.com/mathi501",
+    twitch: "https://www.twitch.tv/mathi"
+  },
+  {
+    id: 7,
+    name: "Renscereol",
+    photo: "/pfps/renscereol.jpg",
+    rank: "#28,070",
+    chile: "#377",
+    pp: "7,349pp",
+    accuracy: "98.97%",
+    perfil: "https://osu.ppy.sh/users/13058814",
+    twitter: "https://x.com/iSaneDraven",
+    twitch: "https://www.twitch.tv/xuyidd"
+  },
+  {
+    id: 8,
+    name: "Deruz",
+    photo: "/pfps/deruz.jpg",
+    rank: "#1,981",
+    chile: "#32",
+    pp: "12,510pp",
+    accuracy: "98.07%",
+    perfil: "https://osu.ppy.sh/users/5386106",
+    twitter: "https://x.com/Deruz_",
+    twitch: "https://www.twitch.tv/deruz"
+  },
+  {
+    id: 9,
+    name: "Dylson",
+    photo: "/pfps/dylson.jpg",
+    rank: "#1,396",
+    chile: "#22",
+    pp: "13,211pp",
+    accuracy: "99.30%",
+    perfil: "https://osu.ppy.sh/users/6315784",
+    twitter: "https://x.com/Dylson_Caro",
+    twitch: "https://www.twitch.tv/dylson"
+  },
+  {
+    id: 10,
+    name: "MonkiDonki",
+    photo: "/pfps/monkidonki.jpg",
+    rank: "#102,224",
+    chile: "#1,293",
+    pp: "4,964pp",
+    accuracy: "98.50%",
+    perfil: "https://osu.ppy.sh/users/5298487",
+    twitter: "https://x.com/MonkiDonkii",
+    twitch: "https://www.twitch.tv/MonkiDonki"
+  },
+  {
+    id: 11,
+    name: "Azubux1",
+    photo: "/pfps/azubux.jpg",
+    rank: "#15,796",
+    chile: "#220",
+    pp: "8,447pp",
+    accuracy: "98.71%",
+    perfil: "https://osu.ppy.sh/users/6265645",
+    twitter: "https://x.com/azubux1",
+    twitch:"https://www.twitch.tv/azubux1"
+  },
+  {
+    id: 12,
+    name: "Touche",
+    photo: "/pfps/touche.jpg",
+    rank: "#90,208",
+    chile: "#1,133",
+    pp: "5,192pp",
+    accuracy: "98.99%",
+    perfil: "https://osu.ppy.sh/users/1603962",
+    twitter: "https://x.com/tuxe_",
+    twitch: "https://www.twitch.tv/tulimonnn"
+  },
+  {
+    id: 13,
+    name: "NagaZer",
+    photo: "/pfps/nagazer.jpg",
+    rank: "#15,671",
+    chile: "#217",
+    pp: "8,462pp",
+    accuracy: "97.24%",
+    perfil: "https://osu.ppy.sh/users/4057299",
+    twitter: "https://x.com/nagazerx",
+    twitch: "https://www.twitch.tv/nagazer"
+  },
+  {
+    id: 14,
+    name: "tfge",
+    photo: "/pfps/tfge.jpg",
+    rank: "#2,321",
+    chile: "#38",
+    pp: "12,198pp",
+    accuracy: "98.26%",
+    perfil: "https://osu.ppy.sh/users/11207004",
+    twitter: "https://x.com/turtl17",
+    twitch: "https://www.twitch.tv/tfgestu"
+  },
+  {
+    id: 15,
+    name: "nekore",
+    photo: "/pfps/nekore.jpg",
+    rank: "#279",
+    chile: "#6",
+    pp: "16,673pp",
+    accuracy: "98.76%",
+    perfil: "https://osu.ppy.sh/users/18946207",
+    twitter: "https://x.com/notnekore",
+    twitch: "https://www.twitch.tv/nekorecl"
+  },
+  {
+    id: 16,
+    name: "???",
+    photo: "/mascota.png",
+    rank: "#???",
+    chile: "#???",
+    pp: "???pp",
+    accuracy: "???%",
+    perfil: "",
+    twitter: "",
+    twitch: ""
+  },
+  {
+    id: 17,
+    name: "???",
+    photo: "/mascota.png",
+    rank: "#???",
+    chile: "#???",
+    pp: "???pp",
+    accuracy: "???%",
+    perfil: "",
+    twitter: "",
+    twitch: ""
+  },
+];
+---
+
+<BaseLayout>
+  <section class="max-w-7xl mx-auto px-6 py-12">
+    <h1 class="text-5xl font-bold text-center mb-12 font-space-mono text-[var(--color-text)]">
+      Participantes
+    </h1>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      
+      <!-- Panel de selección de jugadores (izquierda) - Cambiado a 4 columnas -->
+      <div class="order-2 lg:order-1">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {players.map((player, index) => (
+            <div 
+              class="player-card cursor-pointer transform transition-all duration-300 hover:scale-110"
+              data-player-id={player.id}
+              data-selected={index === 0 ? "true" : "false"}
+            >
+              <div class="relative rounded-lg overflow-hidden shadow-lg">
+                <img 
+                  src={player.photo} 
+                  alt={player.name}
+                  class="w-full h-32 object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                  <h3 class="text-white font-semibold text-xs p-2 w-full text-center">
+                    {player.name}
+                  </h3>
+                </div>
+                <!-- Borde de selección -->
+                <div class="selection-border absolute inset-0 border-4 border-transparent transition-all duration-300"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Hoja de datos del jugador (derecha) -->
+<div class="order-1 lg:order-2 lg:sticky lg:top-24">
+  <div class="relative">
+    <!-- Imagen de fondo de la hoja -->
+    <img 
+      src="/planilla.png" 
+      alt="Player Stats Sheet" 
+      class="w-full rounded-lg shadow-2xl"
+    />
+    
+    <!-- Datos con posicionamiento absoluto -->
+    <div class="absolute inset-0">
+      <!-- Foto del jugador - Ajusta top y left según tu diseño -->
+      <img 
+        id="selectedPlayerPhoto"
+        src={players[0].photo}
+        alt="Selected Player"
+        class="absolute w-32 h-32 rounded-full object-cover border-4 border-[var(--color-accent)] shadow-lg"
+        style="top: 15%; left: 8%;"
+      />
+
+      <!-- Nombre del jugador -->
+      <h2 
+        id="selectedPlayerName" 
+        class="absolute text-3xl font-bold font-space-mono text-[var(--color-text)]"
+        style="top: 32%; right: 19%; transform: rotate(-3deg);"
+      >
+        {players[0].name}
+      </h2>
+
+      <!-- Rank -->
+      <div class="absolute" style="top: 55.2%; left: 25%; transform: rotate(-3deg);">
+        <span id="selectedPlayerRank" class="font-bold font-space-mono text-xl">{players[0].rank}</span>
+      </div>
+      
+      <!-- Rank Chile -->
+      <div class="absolute" style="top: 54.4%; left: 47.5%; transform: rotate(-3deg);">
+        <span id="selectedPlayerRankChile" class="font-bold font-font-space-mono text-xl">{players[0].chile}</span>
+      </div>
+
+      <!-- PP -->
+      <div class="absolute" style="top: 53.4%; left: 67%; transform: rotate(-3deg);">
+        <span id="selectedPlayerPP" class="font-bold font-font-space-mono text-xl">{players[0].pp}</span>
+      </div>
+      
+      <!-- Accuracy -->
+      <div class="absolute" style="top: 37%; right: 19%; transform: rotate(-3deg);">
+        <span id="selectedPlayerAccuracy" class="font-bold font-space-mono text-2xl">{players[0].accuracy}</span>
+      </div>
+      
+      <!-- Perfil -->
+      <div class="absolute" style="top: 66.6%; left: 30%; transform: rotate(-3deg);">
+        <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
+      <img src="/forum-icon.svg" alt="Perfil" class="w-11 h-11" />
+      </div>
+
+      <!-- Twitter -->
+      <div class="absolute" style="top: 67%; left: 20%; transform: rotate(-3deg);}">
+        <a id="selectedPlayerTwitter" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
+      <img src="/twitter-icon.svg" alt="Twitter" class="w-12 h-12" />
+      </div>
+
+      <!-- Twitch -->
+      <div class="absolute" style="top: 66%; left: 39%; transform: rotate(-3deg);}">
+        <a id="selectedPlayerTwitch" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
+      <img src="/twitch-icon.svg" alt="Twitch" class="w-12 h-12" />
+  </a>
+</div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .player-card[data-selected="true"] .selection-border {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent);
+  }
+
+  .player-card:hover .selection-border {
+    border-color: rgba(107, 78, 255, 0.5);
+  }
+
+  .player-card {
+    position: relative;
+  }
+
+  /* Efecto de brillo al seleccionar */
+  .player-card[data-selected="true"]::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(45deg, var(--color-accent), transparent);
+    border-radius: 0.5rem;
+    opacity: 0.3;
+    z-index: -1;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+</style>
+
+<script define:vars={{ players }}>
+  const playerCards = document.querySelectorAll('.player-card');
+
+  playerCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const playerId = parseInt(card.dataset.playerId);
+      const player = players.find(p => p.id === playerId);
+      
+      if (player) {
+        // Remover selección anterior
+        playerCards.forEach(c => c.dataset.selected = "false");
+        
+        // Marcar como seleccionado
+        card.dataset.selected = "true";
+        
+        // Actualizar datos con animación
+        const elements = {
+          photo: document.getElementById('selectedPlayerPhoto'),
+          name: document.getElementById('selectedPlayerName'),
+          rank: document.getElementById('selectedPlayerRank'),
+          chile: document.getElementById('selectedPlayerRankChile'),
+          pp: document.getElementById('selectedPlayerPP'),
+          accuracy: document.getElementById('selectedPlayerAccuracy'),
+          perfil: document.getElementById('selectedPlayerPerfil'),
+          twitter: document.getElementById('selectedPlayerTwitter'),
+          twitch: document.getElementById('selectedPlayerTwitch')
+        };
+
+        // Añadir efecto de fade
+        Object.values(elements).forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(10px)';
+        });
+
+        setTimeout(() => {
+          elements.photo.src = player.photo;
+          elements.name.textContent = player.name;
+          elements.rank.textContent = player.rank;
+          elements.pp.textContent = player.pp;
+          elements.chile.textContent = player.chile;
+          elements.accuracy.textContent = player.accuracy;
+          elements.perfil.href = player.perfil;
+          elements.twitter.href = player.twitter;
+          elements.twitch.href = player.twitch;
+
+          Object.values(elements).forEach((el, index) => {
+            setTimeout(() => {
+              el.style.transition = 'all 0.3s ease';
+              el.style.opacity = '1';
+              if (el.id === 'selectedPlayerName') {
+                el.style.transform = 'translateY(0) rotate(-3deg)';
+              } else {
+                el.style.transform = 'translateY(0)';
+              }
+            }, index * 50);
+          });
+        }, 150);
+      }
+    });
+  });
+</script>
