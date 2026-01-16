@@ -301,7 +301,7 @@ const players = [
       {players[0].perfil && (
       <div class="absolute flex items-center gap-2" style="top: 66%; right: 8%;" id="perfilContainer">
         <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
-          <img src={`${base}assets/perfil-icon.svg`} alt="Perfil" class="w-6 h-6" />
+          <img src={`${base}perfil-icon.svg`} alt="Perfil" class="w-6 h-6" />
         </a>
       </div>
     )}
@@ -310,7 +310,7 @@ const players = [
       {players[0].twitter && (
       <div class="absolute flex items-center gap-2" style="top: 74%; right: 8%;" id="twitterContainer">
         <a id="selectedPlayerTwitter" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
-          <img src={`${base}assets/twitter-icon.svg`} alt="Twitter" class="w-6 h-6" />
+          <img src={`${base}twitter-icon.svg`} alt="Twitter" class="w-6 h-6" />
         </a>
       </div>
     )}
@@ -319,7 +319,7 @@ const players = [
       {players[0].twitch && (
       <div class="absolute flex items-center gap-2" style="top: 82%; right: 8%;" id="twitchContainer">
         <a id="selectedPlayerTwitch" href={players[0].twitch} target="_blank" class="hover:opacity-80 transition">
-          <img src={`${base}assets/twitch-icon.svg`} alt="Twitch" class="w-6 h-6" />
+          <img src={`${base}twitch-icon.svg`} alt="Twitch" class="w-6 h-6" />
         </a>
       </div>
     )}
@@ -389,6 +389,7 @@ const players = [
           photo: document.getElementById('selectedPlayerPhoto'),
           name: document.getElementById('selectedPlayerName'),
           rank: document.getElementById('selectedPlayerRank'),
+          chile: document.getElementById('selectedPlayerChile'),
           pp: document.getElementById('selectedPlayerPP'),
           accuracy: document.getElementById('selectedPlayerAccuracy'),
         };
