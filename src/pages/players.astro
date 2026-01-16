@@ -299,9 +299,9 @@ const players = [
       
       <!-- Perfil -->
       {players[0].perfil && (
-      <div class="absolute flex items-center gap-2" style="top: 66%; right: 8%;" id="perfilContainer">
+      <div class="absolute flex items-center gap-2" style="top: 68%; left: 21%; transform: rotate(-3deg);" id="perfilContainer">
         <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
-          <img src={`${base}perfil-icon.svg`} alt="Perfil" class="w-6 h-6" />
+          <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-10 h-10" />
         </a>
       </div>
     )}
@@ -420,6 +420,7 @@ const players = [
           elements.photo.src = player.photo;
           elements.name.textContent = player.name;
           elements.rank.textContent = player.rank;
+          elements.chile.textContent = player.chile;
           elements.pp.textContent = player.pp;
           elements.accuracy.textContent = player.accuracy;
 
