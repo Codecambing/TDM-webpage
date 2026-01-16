@@ -7,7 +7,7 @@ const players = [
   {
     id: 1,
     name: "Lasseh",
-    photo: "${base}pfps/lasseh.jpg",
+    photo: `${base}pfps/lasseh.jpg`,
     rank: "#3,909",
     chile: "#64",
     pp: "11,114pp",
@@ -19,7 +19,7 @@ const players = [
   {
     id: 2,
     name: "Intercambing",
-    photo: "${base}pfps/intercambing.jpg",
+    photo: `${base}pfps/intercambing.jpg`,
     rank: "#96",
     chile: "#3",
     pp: "19,005pp",
@@ -31,7 +31,7 @@ const players = [
   {
     id: 3,
     name: "siiphs",
-    photo: "${base}pfps/siiphs.gif",
+    photo: `${base}pfps/siiphs.gif`,
     rank: "#1,989",
     chile: "#33",
     pp: "11,567pp",
@@ -43,7 +43,7 @@ const players = [
   {
     id: 4,
     name: "suntanCTM",
-    photo: "${base}pfps/suntan.jpg",
+    photo: `${base}pfps/suntan.jpg`,
     rank: "#426",
     chile: "#9",
     pp: "15,612pp",
@@ -55,7 +55,7 @@ const players = [
   {
     id: 5,
     name: "paxyh",
-    photo: "${base}pfps/paxyh.jpg",
+    photo: `${base}pfps/paxyh.jpg`,
     rank: "#6,552",
     chile: "#92",
     pp: "10,133pp",
@@ -67,7 +67,7 @@ const players = [
   {
     id: 6,
     name: "Mathi",
-    photo: "${base}pfps/mathi.jpg",
+    photo: `${base}pfps/mathi.jpg`,
     rank: "#83",
     chile: "#2",
     pp: "19,392pp",
@@ -79,7 +79,7 @@ const players = [
   {
     id: 7,
     name: "Renscereol",
-    photo: "${base}pfps/renscereol.jpg",
+    photo: `${base}pfps/renscereol.jpg`,
     rank: "#28,070",
     chile: "#377",
     pp: "7,349pp",
@@ -91,7 +91,7 @@ const players = [
   {
     id: 8,
     name: "Deruz",
-    photo: "${base}pfps/deruz.jpg",
+    photo: `${base}pfps/deruz.jpg`,
     rank: "#1,981",
     chile: "#32",
     pp: "12,510pp",
@@ -103,7 +103,7 @@ const players = [
   {
     id: 9,
     name: "Dylson",
-    photo: "${base}pfps/dylson.jpg",
+    photo: `${base}pfps/dylson.jpg`,
     rank: "#1,396",
     chile: "#22",
     pp: "13,211pp",
@@ -115,7 +115,7 @@ const players = [
   {
     id: 10,
     name: "MonkiDonki",
-    photo: "${base}pfps/monkidonki.jpg",
+    photo: `${base}pfps/monkidonki.jpg`,
     rank: "#102,224",
     chile: "#1,293",
     pp: "4,964pp",
@@ -127,7 +127,7 @@ const players = [
   {
     id: 11,
     name: "Azubux1",
-    photo: "${base}pfps/azubux.jpg",
+    photo: `${base}pfps/azubux.jpg`,
     rank: "#15,796",
     chile: "#220",
     pp: "8,447pp",
@@ -139,7 +139,7 @@ const players = [
   {
     id: 12,
     name: "Touche",
-    photo: "${base}pfps/touche.jpg",
+    photo: `${base}pfps/touche.jpg`,
     rank: "#90,208",
     chile: "#1,133",
     pp: "5,192pp",
@@ -151,7 +151,7 @@ const players = [
   {
     id: 13,
     name: "NagaZer",
-    photo: "${base}pfps/nagazer.jpg",
+    photo: `${base}pfps/nagazer.jpg`,
     rank: "#15,671",
     chile: "#217",
     pp: "8,462pp",
@@ -163,7 +163,7 @@ const players = [
   {
     id: 14,
     name: "tfge",
-    photo: "${base}pfps/tfge.jpg",
+    photo: `${base}pfps/tfge.jpg`,
     rank: "#2,321",
     chile: "#38",
     pp: "12,198pp",
@@ -175,7 +175,7 @@ const players = [
   {
     id: 15,
     name: "nekore",
-    photo: "${base}pfps/nekore.jpg",
+    photo: `${base}pfps/nekore.jpg`,
     rank: "#279",
     chile: "#6",
     pp: "16,673pp",
@@ -187,7 +187,7 @@ const players = [
   {
     id: 16,
     name: "???",
-    photo: "${base}mascota.png",
+    photo: `${base}mascota.png`,
     rank: "#???",
     chile: "#???",
     pp: "???pp",
@@ -199,7 +199,7 @@ const players = [
   {
     id: 17,
     name: "???",
-    photo: "${base}mascota.png",
+    photo: `${base}mascota.png`,
     rank: "#???",
     chile: "#???",
     pp: "???pp",
@@ -252,7 +252,7 @@ const players = [
   <div class="relative">
     <!-- Imagen de fondo de la hoja -->
     <img 
-      src="${base}planilla.png" 
+      src={`${base}assets/planilla.png`} 
       alt="Player Stats Sheet" 
       class="w-full rounded-lg shadow-2xl"
     />
@@ -300,19 +300,19 @@ const players = [
       <!-- Perfil -->
       <div class="absolute" style="top: 66.6%; left: 30%; transform: rotate(-3deg);">
         <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
-      <img src="${base}forum-icon.svg" alt="Perfil" class="w-11 h-11" />
+      <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-11 h-11" />
       </div>
 
       <!-- Twitter -->
       <div class="absolute" style="top: 67%; left: 20%; transform: rotate(-3deg);}">
         <a id="selectedPlayerTwitter" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
-      <img src="${base}twitter-icon.svg" alt="Twitter" class="w-12 h-12" />
+      <img src={`${base}twitter-icon.svg`} alt="Twitter" class="w-12 h-12" />
       </div>
 
       <!-- Twitch -->
       <div class="absolute" style="top: 66%; left: 39%; transform: rotate(-3deg);}">
         <a id="selectedPlayerTwitch" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
-      <img src="${base}twitch-icon.svg" alt="Twitch" class="w-12 h-12" />
+      <img src={`${base}twitch-icon.svg`} alt="Twitch" class="w-12 h-12" />
   </a>
 </div>
     </div>
