@@ -218,8 +218,6 @@ const players = [
     </h1>
     
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-      
-      <!-- Panel de selección de jugadores (izquierda) - Cambiado a 4 columnas -->
       <div class="order-2 lg:order-1">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {players.map((player, index) => (
@@ -247,19 +245,16 @@ const players = [
         </div>
       </div>
 
-      <!-- Hoja de datos del jugador (derecha) -->
 <div class="order-1 lg:order-2 lg:sticky lg:top-24">
   <div class="relative">
-    <!-- Imagen de fondo de la hoja -->
+    <!-- Planilla player stats -->
     <img 
       src={`${base}planilla.png`} 
       alt="Player Stats Sheet" 
       class="w-full rounded-lg shadow-2xl"
     />
     
-    <!-- Datos con posicionamiento absoluto -->
     <div class="absolute inset-0">
-      <!-- Foto del jugador - Ajusta top y left según tu diseño -->
       <img 
         id="selectedPlayerPhoto"
         src={players[0].photo}
@@ -297,7 +292,7 @@ const players = [
         <span id="selectedPlayerAccuracy" class="font-bold font-space-mono text-2xl">{players[0].accuracy}</span>
       </div>
       
-      <!-- Perfil -->
+      <!-- Perfil osu!-->
       <div id="perfilContainer" class="absolute" style="top: 66.6%; left: 30%; transform: rotate(-3deg);">
         <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
           <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-11 h-11" />
@@ -339,7 +334,6 @@ const players = [
     position: relative;
   }
 
-  /* Efecto de brillo al seleccionar */
   .player-card[data-selected="true"]::after {
     content: '';
     position: absolute;
@@ -370,13 +364,11 @@ const players = [
       const player = players.find(p => p.id === playerId);
       
       if (player) {
-        // Remover selección anterior
+
         playerCards.forEach(c => c.dataset.selected = "false");
         
-        // Marcar como seleccionado
         card.dataset.selected = "true";
         
-        // Actualizar datos con animación
         const elements = {
           photo: document.getElementById('selectedPlayerPhoto'),
           name: document.getElementById('selectedPlayerName'),
@@ -389,14 +381,13 @@ const players = [
           twitch: document.getElementById('selectedPlayerTwitch')
         };
 
-        // Contenedores de redes sociales
         const socialContainers = {
           perfil: document.getElementById('perfilContainer'),
           twitter: document.getElementById('twitterContainer'),
           twitch: document.getElementById('twitchContainer')
         };
 
-        // Añadir efecto de fade
+        // Efecto fade
         Object.values(elements).forEach(el => {
           if (el) {
             el.style.opacity = '0';
@@ -412,7 +403,6 @@ const players = [
           elements.chile.textContent = player.chile;
           elements.accuracy.textContent = player.accuracy;
 
-          // Mostrar u ocultar redes sociales según si tienen contenido
           if (player.perfil) {
             socialContainers.perfil.style.display = 'block';
             elements.perfil.href = player.perfil;
