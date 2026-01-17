@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout>
+  <section class="max-w-6xl mx-auto px-6 py-12">
+    
+    <!-- Título principal -->
+    <h1 class="text-5xl md:text-6xl font-bold text-center mb-12 font-space-mono text-[var(--color-text)]">
+      Información del Torneo
+    </h1>
+
+    <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 border-4 border-[var(--color-navbar)]">
+    
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+          Sobre el Torneo
+        </h2>
+        <p class="text-lg leading-relaxed text-gray-700 mb-4">
+          Torre del Mago invitacional es un torneo 1v1 de osu! pero que enbarca multiples juegos,
+          este torneo está organizado por un grupo de amigos. 
+        </p>
+        <p class="text-lg leading-relaxed text-gray-700">
+          Durante el torneo existirán muchos slots distintos,
+          donde hay diversidad de juegos y cada juego tendrá su propia condición de victoria,
+          en casos como osu!, cuando se escoja existirá una mappool específica para ese juego,
+          debido a que son rondas cortas se declarara de mejor manera el formato para cada juego en otro punto más abajo.
+        </p>
+      </div>
+
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+          Reglas Generales
+        </h2>
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li class="flex items-start">
+            <span class="text-[var(--color-accent)] mr-3 font-bold">•</span>
+            <span>El torneo es 1v1, formato de eliminación directa</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-[var(--color-accent)] mr-3 font-bold">•</span>
+            <span>Todos los partidos serán ScoreV2</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-[var(--color-accent)] mr-3 font-bold">•</span>
+            <span>No hay restricciones de mods en FreeMod picks</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-[var(--color-accent)] mr-3 font-bold">•</span>
+            <span>El torneo no comenzará hasta que estén todos los participantes</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sección: Formato -->
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+          Formato del Torneo
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-[var(--color-background)] p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-3 font-space-mono">Rondas Iniciales</h3>
+            <p class="text-gray-700">TBA</p>
+            <p class="text-gray-700">Primera eliminación</p>
+          </div>
+          <div class="bg-[var(--color-background)] p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-3 font-space-mono">Semifinales</h3>
+            <p class="text-gray-700">TBA</p>
+            <p class="text-gray-700">Mayor tensión competitiva</p>
+          </div>
+          <div class="bg-[var(--color-background)] p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-3 font-space-mono">Finales</h3>
+            <p class="text-gray-700">TBA</p>
+            <p class="text-gray-700">Gran Final del torneo</p>
+          </div>
+          <div class="bg-[var(--color-background)] p-6 rounded-xl">
+            <h3 class="text-xl font-bold mb-3 font-space-mono">Gran Final</h3>
+            <p class="text-gray-700">TBA</p>
+            <p class="text-gray-700">Coronación del campeón</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección: Premios -->
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+          Premios
+        </h2>
+        <div class="bg-gradient-to-r from-yellow-100 to-yellow-50 p-6 rounded-xl border-2 border-yellow-400">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xl font-bold">🥇 1er Lugar:</span>
+              <span class="text-2xl font-bold text-[var(--color-accent)]">TBA</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-xl font-bold">🥈 2do Lugar:</span>
+              <span class="text-2xl font-bold text-gray-600">TBA</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-xl font-bold">🥉 3er Lugar:</span>
+              <span class="text-2xl font-bold text-orange-600">TBA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección: Fechas importantes -->
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+          Fechas Importantes
+        </h2>
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 p-4 bg-[var(--color-background)] rounded-lg">
+            <div class="text-[var(--color-accent)] font-bold text-2xl">📅</div>
+            <div>
+              <p class="font-bold">Inicio del torneo</p>
+              <p class="text-gray-600">13:00 el 7 de febrero, 2026</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-4 bg-[var(--color-background)] rounded-lg">
+            <div class="text-[var(--color-accent)] font-bold text-2xl">🎮</div>
+            <div>
+              <p class="font-bold">Finales</p>
+              <p class="text-gray-600">17:00 aprox el 7 de febrero, 2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección: Contacto/Staff -->
+      <div>
+        <h2 class="text-3xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+          Contacto
+        </h2>
+        <p class="text-lg text-gray-700 mb-4">
+          Para cualquier consulta o información adicional, puedes contactarnos a través de:
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a 
+            href="https://twitter.com/tu-cuenta" 
+            target="_blank"
+            class="bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-lg font-bold transition transform hover:scale-105"
+          >
+            Twitter
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .bg-white\/90:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+  }
+</style>
