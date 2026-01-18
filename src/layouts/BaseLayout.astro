@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -9,6 +10,7 @@ import Navbar from "../components/Navbar.astro";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Torre del Mago Invitacional</title>
+  <link rel="icon" type="image/png" href={`${base}mascota.png`}>
 </head>
 
 <body>
