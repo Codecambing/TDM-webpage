@@ -1,7 +1,25 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
+
 const base = import.meta.env.BASE_URL;
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Torre del Mago Invitacional",
+  description = "Torneo invitacional 1v1 de varios juegos organizados por y para los miembros de Torre del Mago",
+  image = "ogbg.png"
+} = Astro.props;
+
+const siteUrl = "https://codecambing.github.io/TDM-webpage/";
+const fullImageUrl = image.startsWith('http') 
+  ? image 
+  : `${siteUrl}${image}`;
 ---
 
 <!DOCTYPE html>
@@ -9,8 +27,27 @@ const base = import.meta.env.BASE_URL;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Torre del Mago Invitacional</title>
+  
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  
   <link rel="icon" type="image/png" href={`${base}mascota.png`}>
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={siteUrl}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={fullImageUrl}>
+  <meta property="og:site_name" content="Torre del Mago">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <meta name="theme-color" content="#6b4eff">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={fullImageUrl}>
 </head>
 
 <body>
@@ -23,14 +60,12 @@ const base = import.meta.env.BASE_URL;
   <footer class="bg-[var(--color-navbar)] mt-24">
   <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
 
-    <!-- Créditos -->
     <div>
       <h3 class="font-[Cinzel] text-lg mb-3"></h3>
       <p>Organizado por Torre del Mago</p>
       <p>Diseño y desarrollo realizado por Intercambing</p>
     </div>
 
-    <!-- Información -->
     <div>
       <h3 class="font-[Cinzel] text-lg mb-3">Información</h3>
       <ul class="space-y-2">
@@ -40,7 +75,6 @@ const base = import.meta.env.BASE_URL;
       </ul>
     </div>
 
-    <!-- Redes -->
     <div>
       <h3 class="font-[Cinzel] text-lg mb-3">Redes</h3>
       <ul class="space-y-2">
@@ -52,7 +86,6 @@ const base = import.meta.env.BASE_URL;
 
   </div>
 
-  <!-- Línea inferior -->
   <div class="border-t border-black/10 text-center py-4 text-xs">
     © 2026 Torre del Mago · Todos los derechos reservados
   </div>

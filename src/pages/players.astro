@@ -4,7 +4,6 @@ import { getMultipleOsuUsers } from "../utils/osuApi";
 
 const base = import.meta.env.BASE_URL;
 
-// IDs de los jugadores de osu!
 const playerOsuIds = [
   4881251,   // Lasseh
   2546001,   // Intercambing
@@ -23,7 +22,6 @@ const playerOsuIds = [
   18946207,  // nekore
 ];
 
-// Datos adicionales que no están en la API (redes sociales)
 const socialLinks: Record<number, { twitter: string; twitch: string }> = {
   4881251: { twitter: "https://x.com/lasseh__", twitch: "https://www.twitch.tv/lassseh" },
   2546001: { twitter: "https://x.com/intercambing", twitch: "https://www.twitch.tv/intercambing_" },
@@ -42,7 +40,6 @@ const socialLinks: Record<number, { twitter: string; twitch: string }> = {
   18946207: { twitter: "https://x.com/notnekore", twitch: "https://www.twitch.tv/nekorecl" },
 };
 
-// Obtener datos de la API
 let osuUsers: any[] = [];
 try {
   osuUsers = await getMultipleOsuUsers(playerOsuIds);
@@ -50,16 +47,15 @@ try {
   console.error('Error fetching osu! users:', error);
 }
 
-// Mapear los datos de la API con información adicional
 const players = osuUsers.map((user: any, index: number) => {
   const social = socialLinks[user.id] || { twitter: "", twitch: "" };
   
   return {
     id: index + 1,
     name: user.username,
-    photo: user.avatar_url, // Usar avatar de osu!
+    photo: user.avatar_url,
     rank: `#${user.statistics.global_rank?.toLocaleString() || '???'}`,
-    chile: `#${user.statistics.country_rank || '???'}`,
+    chile: `#${user.statistics.country_rank?.toLocaleString() || '???'}`,
     pp: `${Math.floor(user.statistics.pp || 0).toLocaleString()}pp`,
     accuracy: `${user.statistics.hit_accuracy?.toFixed(2) || '???'}%`,
     perfil: `https://osu.ppy.sh/users/${user.id}`,
@@ -68,7 +64,6 @@ const players = osuUsers.map((user: any, index: number) => {
   };
 });
 
-// Agregar jugadores pendientes
 players.push(
   {
     id: 16,
@@ -133,7 +128,6 @@ players.push(
 
 <div class="order-1 lg:order-2 lg:sticky lg:top-24">
   <div class="relative">
-    <!-- Planilla player stats -->
     <img 
       src={`${base}planilla.png`} 
       alt="Player Stats Sheet" 
@@ -149,7 +143,6 @@ players.push(
         style="top: 15%; left: 8%;"
       />
 
-      <!-- Nombre del jugador -->
       <h2 
         id="selectedPlayerName" 
         class="absolute text-3xl font-bold font-space-mono text-[var(--color-text)]"
@@ -158,41 +151,34 @@ players.push(
         {players[0].name}
       </h2>
 
-      <!-- Rank -->
       <div class="absolute" style="top: 55.2%; left: 25%; transform: rotate(-3deg);">
         <span id="selectedPlayerRank" class="font-bold font-space-mono text-xl">{players[0].rank}</span>
       </div>
       
-      <!-- Rank Chile -->
       <div class="absolute" style="top: 54.4%; left: 47.5%; transform: rotate(-3deg);">
         <span id="selectedPlayerRankChile" class="font-bold font-font-space-mono text-xl">{players[0].chile}</span>
       </div>
 
-      <!-- PP -->
       <div class="absolute" style="top: 53.4%; left: 67%; transform: rotate(-3deg);">
         <span id="selectedPlayerPP" class="font-bold font-font-space-mono text-xl">{players[0].pp}</span>
       </div>
       
-      <!-- Accuracy -->
       <div class="absolute" style="top: 37%; right: 19%; transform: rotate(-3deg);">
         <span id="selectedPlayerAccuracy" class="font-bold font-space-mono text-2xl">{players[0].accuracy}</span>
       </div>
       
-      <!-- Perfil osu!-->
       <div id="perfilContainer" class="absolute" style="top: 66.6%; left: 30%; transform: rotate(-3deg);">
         <a id="selectedPlayerPerfil" href={players[0].perfil} target="_blank" class="hover:opacity-80 transition">
           <img src={`${base}forum-icon.svg`} alt="Perfil" class="w-11 h-11" />
         </a>
       </div>
 
-      <!-- Twitter -->
       <div id="twitterContainer" class="absolute" style="top: 67%; left: 20%; transform: rotate(-3deg);">
         <a id="selectedPlayerTwitter" href={players[0].twitter} target="_blank" class="hover:opacity-80 transition">
           <img src={`${base}twitter-icon.svg`} alt="Twitter" class="w-12 h-12" />
         </a>
       </div>
 
-      <!-- Twitch -->
       <div id="twitchContainer" class="absolute" style="top: 66%; left: 39%; transform: rotate(-3deg);">
         <a id="selectedPlayerTwitch" href={players[0].twitch} target="_blank" class="hover:opacity-80 transition">
           <img src={`${base}twitch-icon.svg`} alt="Twitch" class="w-12 h-12" />
