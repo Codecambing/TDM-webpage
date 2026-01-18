@@ -1,189 +1,75 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getMultipleOsuUsers } from "../utils/osuApi";
 
 const base = import.meta.env.BASE_URL;
 
-const players = [
-  {
-    id: 1,
-    name: "Lasseh",
-    photo: `${base}pfps/lasseh.jpg`,
-    rank: "#3,909",
-    chile: "#64",
-    pp: "11,114pp",
-    accuracy: "97.68%",
-    perfil: "https://osu.ppy.sh/users/4881251",
-    twitter: "https://x.com/lasseh__",
-    twitch: "https://www.twitch.tv/lassseh"
-  },
-  {
-    id: 2,
-    name: "Intercambing",
-    photo: `${base}pfps/intercambing.jpg`,
-    rank: "#96",
-    chile: "#3",
-    pp: "19,005pp",
-    accuracy: "98.84%",
-    perfil: "https://osu.ppy.sh/users/2546001",
-    twitter: "https://x.com/intercambing",
-    twitch: "https://www.twitch.tv/intercambing_"
-  },
-  {
-    id: 3,
-    name: "siiphs",
-    photo: `${base}pfps/siiphs.gif`,
-    rank: "#1,989",
-    chile: "#33",
-    pp: "11,567pp",
-    accuracy: "98.70%",
-    perfil: "https://osu.ppy.sh/users/11786864",
-    twitter: "https://x.com/siiphs",
-    twitch: "https://www.twitch.tv/siiphs"
-  },
-  {
-    id: 4,
-    name: "suntanCTM",
-    photo: `${base}pfps/suntan.jpg`,
-    rank: "#426",
-    chile: "#9",
-    pp: "15,612pp",
-    accuracy: "98.63%",
-    perfil: "https://osu.ppy.sh/users/19998548",
-    twitter: "https://x.com/suntanctm",
-    twitch: "https://www.twitch.tv/suntanctm"
-  },
-  {
-    id: 5,
-    name: "paxyh",
-    photo: `${base}pfps/paxyh.jpg`,
-    rank: "#6,552",
-    chile: "#92",
-    pp: "10,133pp",
-    accuracy: "98.29%",
-    perfil: "https://osu.ppy.sh/users/18036760",
-    twitter: "https://x.com/paxyh1",
-    twitch: "https://www.twitch.tv/paxyhhh",
-  },
-  {
-    id: 6,
-    name: "Mathi",
-    photo: `${base}pfps/mathi.jpg`,
-    rank: "#83",
-    chile: "#2",
-    pp: "19,392pp",
-    accuracy: "98.93%",
-    perfil: "https://osu.ppy.sh/users/5339515",
-    twitter: "https://x.com/mathi501",
-    twitch: "https://www.twitch.tv/mathi"
-  },
-  {
-    id: 7,
-    name: "Renscereol",
-    photo: `${base}pfps/renscereol.jpg`,
-    rank: "#28,070",
-    chile: "#377",
-    pp: "7,349pp",
-    accuracy: "98.97%",
-    perfil: "https://osu.ppy.sh/users/13058814",
-    twitter: "https://x.com/iSaneDraven",
-    twitch: "https://www.twitch.tv/xuyidd"
-  },
-  {
-    id: 8,
-    name: "Deruz",
-    photo: `${base}pfps/deruz.jpg`,
-    rank: "#1,981",
-    chile: "#32",
-    pp: "12,510pp",
-    accuracy: "98.07%",
-    perfil: "https://osu.ppy.sh/users/5386106",
-    twitter: "https://x.com/Deruz_",
-    twitch: "https://www.twitch.tv/deruz"
-  },
-  {
-    id: 9,
-    name: "Dylson",
-    photo: `${base}pfps/dylson.jpg`,
-    rank: "#1,396",
-    chile: "#22",
-    pp: "13,211pp",
-    accuracy: "99.30%",
-    perfil: "https://osu.ppy.sh/users/6315784",
-    twitter: "https://x.com/Dylson_Caro",
-    twitch: "https://www.twitch.tv/dylson"
-  },
-  {
-    id: 10,
-    name: "MonkiDonki",
-    photo: `${base}pfps/monkidonki.jpg`,
-    rank: "#102,224",
-    chile: "#1,293",
-    pp: "4,964pp",
-    accuracy: "98.50%",
-    perfil: "https://osu.ppy.sh/users/5298487",
-    twitter: "https://x.com/MonkiDonkii",
-    twitch: "https://www.twitch.tv/MonkiDonki"
-  },
-  {
-    id: 11,
-    name: "Azubux1",
-    photo: `${base}pfps/azubux.jpg`,
-    rank: "#15,796",
-    chile: "#220",
-    pp: "8,447pp",
-    accuracy: "98.71%",
-    perfil: "https://osu.ppy.sh/users/6265645",
-    twitter: "https://x.com/azubux1",
-    twitch:"https://www.twitch.tv/azubux1"
-  },
-  {
-    id: 12,
-    name: "Touche",
-    photo: `${base}pfps/touche.jpg`,
-    rank: "#90,208",
-    chile: "#1,133",
-    pp: "5,192pp",
-    accuracy: "98.99%",
-    perfil: "https://osu.ppy.sh/users/1603962",
-    twitter: "https://x.com/tuxe_",
-    twitch: "https://www.twitch.tv/tulimonnn"
-  },
-  {
-    id: 13,
-    name: "NagaZer",
-    photo: `${base}pfps/nagazer.jpg`,
-    rank: "#15,671",
-    chile: "#217",
-    pp: "8,462pp",
-    accuracy: "97.24%",
-    perfil: "https://osu.ppy.sh/users/4057299",
-    twitter: "https://x.com/nagazerx",
-    twitch: "https://www.twitch.tv/nagazer"
-  },
-  {
-    id: 14,
-    name: "tfge",
-    photo: `${base}pfps/tfge.jpg`,
-    rank: "#2,321",
-    chile: "#38",
-    pp: "12,198pp",
-    accuracy: "98.26%",
-    perfil: "https://osu.ppy.sh/users/11207004",
-    twitter: "https://x.com/turtl17",
-    twitch: "https://www.twitch.tv/tfgestu"
-  },
-  {
-    id: 15,
-    name: "nekore",
-    photo: `${base}pfps/nekore.jpg`,
-    rank: "#279",
-    chile: "#6",
-    pp: "16,673pp",
-    accuracy: "98.76%",
-    perfil: "https://osu.ppy.sh/users/18946207",
-    twitter: "https://x.com/notnekore",
-    twitch: "https://www.twitch.tv/nekorecl"
-  },
+// IDs de los jugadores de osu!
+const playerOsuIds = [
+  4881251,   // Lasseh
+  2546001,   // Intercambing
+  11786864,  // siiphs
+  19998548,  // suntanCTM
+  18036760,  // paxyh
+  5339515,   // Mathi
+  13058814,  // Renscereol
+  5386106,   // Deruz
+  6315784,   // Dylson
+  5298487,   // MonkiDonki
+  6265645,   // Azubux1
+  1603962,   // Touche
+  4057299,   // NagaZer
+  11207004,  // tfge
+  18946207,  // nekore
+];
+
+// Datos adicionales que no están en la API (redes sociales)
+const socialLinks: Record<number, { twitter: string; twitch: string }> = {
+  4881251: { twitter: "https://x.com/lasseh__", twitch: "https://www.twitch.tv/lassseh" },
+  2546001: { twitter: "https://x.com/intercambing", twitch: "https://www.twitch.tv/intercambing_" },
+  11786864: { twitter: "https://x.com/siiphs", twitch: "https://www.twitch.tv/siiphs" },
+  19998548: { twitter: "https://x.com/suntanctm", twitch: "https://www.twitch.tv/suntanctm" },
+  18036760: { twitter: "https://x.com/paxyh1", twitch: "https://www.twitch.tv/paxyhhh" },
+  5339515: { twitter: "https://x.com/mathi501", twitch: "https://www.twitch.tv/mathi" },
+  13058814: { twitter: "https://x.com/iSaneDraven", twitch: "https://www.twitch.tv/xuyidd" },
+  5386106: { twitter: "https://x.com/Deruz_", twitch: "https://www.twitch.tv/deruz" },
+  6315784: { twitter: "https://x.com/Dylson_Caro", twitch: "https://www.twitch.tv/dylson" },
+  5298487: { twitter: "https://x.com/MonkiDonkii", twitch: "https://www.twitch.tv/MonkiDonki" },
+  6265645: { twitter: "https://x.com/azubux1", twitch: "https://www.twitch.tv/azubux1" },
+  1603962: { twitter: "https://x.com/tuxe_", twitch: "https://www.twitch.tv/tulimonnn" },
+  4057299: { twitter: "https://x.com/nagazerx", twitch: "https://www.twitch.tv/nagazer" },
+  11207004: { twitter: "https://x.com/turtl17", twitch: "https://www.twitch.tv/tfgestu" },
+  18946207: { twitter: "https://x.com/notnekore", twitch: "https://www.twitch.tv/nekorecl" },
+};
+
+// Obtener datos de la API
+let osuUsers: any[] = [];
+try {
+  osuUsers = await getMultipleOsuUsers(playerOsuIds);
+} catch (error) {
+  console.error('Error fetching osu! users:', error);
+}
+
+// Mapear los datos de la API con información adicional
+const players = osuUsers.map((user: any, index: number) => {
+  const social = socialLinks[user.id] || { twitter: "", twitch: "" };
+  
+  return {
+    id: index + 1,
+    name: user.username,
+    photo: user.avatar_url, // Usar avatar de osu!
+    rank: `#${user.statistics.global_rank?.toLocaleString() || '???'}`,
+    chile: `#${user.statistics.country_rank || '???'}`,
+    pp: `${Math.floor(user.statistics.pp || 0).toLocaleString()}pp`,
+    accuracy: `${user.statistics.hit_accuracy?.toFixed(2) || '???'}%`,
+    perfil: `https://osu.ppy.sh/users/${user.id}`,
+    twitter: social.twitter,
+    twitch: social.twitch,
+  };
+});
+
+// Agregar jugadores pendientes
+players.push(
   {
     id: 16,
     name: "???",
@@ -207,8 +93,8 @@ const players = [
     perfil: "",
     twitter: "",
     twitch: ""
-  },
-];
+  }
+);
 ---
 
 <BaseLayout>
