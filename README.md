@@ -1,9 +1,9 @@
 <div align="center">
   <img src="./public/Logo.svg" alt="Torre del Mago Logo" width="300"/>
   
-  # Torre del Mago
+  # Torre del Mago Invitacional
   
-  ### Torneo Invitacional 1v1 de osu!
+  ### Torneo Invitacional 1v1
   
   [![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://codecambing.github.io/TDM-webpage/)
   [![osu!](https://img.shields.io/badge/osu!-Tournament-ff69b4)](https://osu.ppy.sh/)
@@ -19,7 +19,7 @@ Torre del Mago Invitacional es un torneo 1v1 de varios juegos diseñado por un g
 ### Características
 
 - 🏆 **Formato:** Eliminación directa 1v1
-- 👥 **16 jugadores** Miembros del team Torre del Mago en osu!
+- 👥 **16 jugadores:** Miembros del team Torre del Mago en osu!
 - 🎯 **ScoreV2** en todos los partidos
 - 🗺️ **Mappools** cuidadosamente seleccionados
 - 💰 **Premios** por anunciar
@@ -39,6 +39,11 @@ Torre del Mago Invitacional es un torneo 1v1 de varios juegos diseñado por un g
       <img src="./public/pfps/touche.jpg" width="120px;" style="border-radius: 50%;" alt="Host 2"/><br />
       <sub><b>Touche</b></sub><br />
       <sub>🎤 Co-Host</sub>
+    </td>
+        <td align="center" width="200">
+      <img src="./public/pfps/lasseh.jpg" width="120px;" style="border-radius: 50%;" alt="Host 2"/><br />
+      <sub><b>Lasseh</b></sub><br />
+      <sub>🏠 Host lugar</sub>
     </td>
     <td align="center" width="200">
       <img src="./public/pfps/intercambing.jpg" width="120px;" style="border-radius: 50%;" alt="Organizador"/><br />
