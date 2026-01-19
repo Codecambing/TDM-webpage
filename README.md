@@ -20,8 +20,8 @@ Torre del Mago Invitacional es un torneo 1v1 de varios juegos diseñado por un g
 
 - 🏆 **Formato:** Eliminación directa 1v1
 - 👥 **16 jugadores:** Miembros del team Torre del Mago en osu!
-- 🎯 **ScoreV2** en todos los partidos
-- 🗺️ **Mappools** cuidadosamente seleccionados
+- 🎯 **ScoreV2** en las matches de osu!
+- 🕹️ **Juegos** cuidadosamente seleccionados
 - 💰 **Premios** por anunciar
 
 ---
@@ -33,12 +33,12 @@ Torre del Mago Invitacional es un torneo 1v1 de varios juegos diseñado por un g
     <td align="center" width="200">
       <img src="./public/pfps/blackmoderm.jpg" width="120px;" style="border-radius: 50%;" alt="Host 1"/><br />
       <sub><b>Blackmoderm10</b></sub><br />
-      <sub>🎤 Host Principal</sub>
+      <sub>🎤 Host</sub>
     </td>
     <td align="center" width="200">
       <img src="./public/pfps/touche.jpg" width="120px;" style="border-radius: 50%;" alt="Host 2"/><br />
       <sub><b>Touche</b></sub><br />
-      <sub>🎤 Co-Host</sub>
+      <sub>🎤 Host</sub>
     </td>
         <td align="center" width="200">
       <img src="./public/pfps/lasseh.jpg" width="120px;" style="border-radius: 50%;" alt="Host 2"/><br />
