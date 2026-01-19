@@ -256,7 +256,6 @@ const games = [
 </BaseLayout>
 
 <script>
-    const PASSWORD = import.meta.env.PASSWORD_GROUPSTAGE_EDITOR;
 
   const modal = document.getElementById('passwordModal');
   const content = document.getElementById('adminContent');
@@ -275,18 +274,26 @@ const games = [
     if (e.key === 'Enter') checkPassword();
   });
 
-  function checkPassword() {
-    if (input?.value === PASSWORD) {
-      sessionStorage.setItem('adminAuth', 'true');
-      modal?.classList.add('hidden');
-      content?.classList.remove('hidden');
-      errorMsg?.classList.add('hidden');
-    } else {
-      errorMsg?.classList.remove('hidden');
-      input!.value = '';
-      input?.focus();
-    }
+  async function checkPassword() {
+  const res = await fetch('/api/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: input.value })
+  });
+
+  const data = await res.json();
+
+  if (data.ok) {
+    sessionStorage.setItem('adminAuth', 'true');
+    modal?.classList.add('hidden');
+    content?.classList.remove('hidden');
+    errorMsg?.classList.add('hidden');
+  } else {
+    errorMsg?.classList.remove('hidden');
+    input!.value = '';
+    input?.focus();
   }
+}
 
   // Auto-focus en el input
   input?.focus();
