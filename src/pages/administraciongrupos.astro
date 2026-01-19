@@ -1,0 +1,551 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import 'dotenv/config';
+
+const base = import.meta.env.BASE_URL;
+
+const allPlayers = [
+  { id: 1, name: "Lasseh" },
+  { id: 2, name: "Intercambing" },
+  { id: 3, name: "siiphs" },
+  { id: 4, name: "suntanCTM" },
+  { id: 5, name: "paxyh" },
+  { id: 6, name: "Mathi" },
+  { id: 7, name: "Renscereol" },
+  { id: 8, name: "Deruz" },
+  { id: 9, name: "Dylson" },
+  { id: 10, name: "MonkiDonki" },
+  { id: 11, name: "Azubux1" },
+  { id: 12, name: "Touche" },
+  { id: 13, name: "NagaZer" },
+  { id: 14, name: "tfge" },
+  { id: 15, name: "nekore" },
+  { id: 16, name: "Shiny Froakie" },
+  { id: 17, name: "???" },
+];
+
+const games = [
+  "osu!",
+  "WarioWare",
+  "Smash Bros",
+  "Mario Kart",
+  "Wii Sports",
+  "Move or Die",
+  "TETR.IO",
+  "Mario Strikers",
+  "Cachipún",
+  "Chess Blitz",
+  "ESPECIAL"
+];
+---
+
+<BaseLayout title="Torre del Mago - Administración">
+  <!-- Modal de contraseña -->
+  <div id="passwordModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+    <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4">
+      <h2 class="text-2xl font-bold mb-4 font-space-mono text-center">
+        Acceso Restringido
+      </h2>
+      <p class="text-gray-600 mb-6 text-center">
+        Ingresa la contraseña para acceder al panel de grupos
+      </p>
+      <input 
+        type="password" 
+        id="passwordInput"
+        placeholder="Contraseña"
+        class="w-full p-3 border-2 border-gray-300 rounded-lg mb-4 font-semibold"
+      />
+      <button 
+        id="submitPassword"
+        class="w-full bg-[var(--color-accent)] text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition"
+      >
+        Entrar
+      </button>
+      <p id="errorMessage" class="text-red-600 text-sm mt-2 hidden text-center">
+        Contraseña incorrecta
+      </p>
+    </div>
+  </div>
+
+  <!-- Contenido oculto inicialmente -->
+  <div id="adminContent" class="hidden">
+    <section class="max-w-7xl mx-auto px-6 py-12">
+    
+    <h1 class="text-5xl font-bold text-center mb-12 font-space-mono text-[var(--color-text)]">
+      Fase de Grupos
+    </h1>
+
+    <!-- Tabs de Grupos -->
+    <div class="flex justify-center gap-4 mb-8 flex-wrap">
+      <button 
+        class="group-tab active bg-[var(--color-accent)] text-white px-6 py-3 rounded-lg font-bold transition hover:opacity-90"
+        data-group="A"
+      >
+        Grupo A
+      </button>
+      <button 
+        class="group-tab bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-bold transition hover:bg-gray-400"
+        data-group="B"
+      >
+        Grupo B
+      </button>
+      <button 
+        class="group-tab bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-bold transition hover:bg-gray-400"
+        data-group="C"
+      >
+        Grupo C
+      </button>
+      <button 
+        class="group-tab bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-bold transition hover:bg-gray-400"
+        data-group="D"
+      >
+        Grupo D
+      </button>
+    </div>
+
+    <!-- Contenedor de Grupos -->
+    <div id="groupsContainer">
+      
+      <!-- Grupo A -->
+      <div class="group-content" data-group="A">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          
+          <!-- Selector de Jugadores -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Seleccionar Jugadores del Grupo A
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <select id="playerA1" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerA2" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerA3" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 3</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerA4" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 4</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+            </div>
+            <button 
+              id="saveGroupA"
+              class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
+            >
+              Guardar Grupo A
+            </button>
+          </div>
+
+          <!-- Tabla de Posiciones -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Tabla de Posiciones
+            </h2>
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="bg-[var(--color-navbar)]">
+                    <th class="p-3 text-left font-bold">Pos</th>
+                    <th class="p-3 text-left font-bold">Jugador</th>
+                    <th class="p-3 text-center font-bold">PJ</th>
+                    <th class="p-3 text-center font-bold">G</th>
+                    <th class="p-3 text-center font-bold">P</th>
+                    <th class="p-3 text-center font-bold">Pts</th>
+                  </tr>
+                </thead>
+                <tbody id="standingsA">
+                  <tr class="border-b">
+                    <td colspan="6" class="p-4 text-center text-gray-500">
+                      Selecciona los jugadores del grupo
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+<!-- Registrar Partidos -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Registrar Partido
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchPlayer1A" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+              </select>
+              <select id="matchPlayer2A" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchGameA" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Seleccionar Juego</option>
+                {games.map(game => (
+                  <option value={game}>{game}</option>
+                ))}
+              </select>
+              <select id="matchWinnerA" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Ganador</option>
+                <option value="1">Jugador 1</option>
+                <option value="2">Jugador 2</option>
+              </select>
+            </div>
+            <div class="flex gap-4">
+              <button 
+                id="addMatchA"
+                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
+              >
+                Registrar Partido
+              </button>
+              <button 
+                id="resetGroupA"
+                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
+              >
+                🗑️ Resetear Grupo
+              </button>
+            </div>
+          </div>
+
+          <!-- Historial de Partidos -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Historial de Partidos
+            </h2>
+            <div id="matchHistoryA" class="space-y-3">
+              <p class="text-gray-500 text-center">No hay partidos registrados</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Grupos B, C, D (estructura similar) -->
+      <div class="group-content hidden" data-group="B">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          <p class="text-center text-gray-500">Grupo B - En construcción (misma estructura que Grupo A)</p>
+        </div>
+      </div>
+
+      <div class="group-content hidden" data-group="C">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          <p class="text-center text-gray-500">Grupo C - En construcción (misma estructura que Grupo A)</p>
+        </div>
+      </div>
+
+      <div class="group-content hidden" data-group="D">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          <p class="text-center text-gray-500">Grupo D - En construcción (misma estructura que Grupo A)</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+</BaseLayout>
+
+<script>
+    const PASSWORD: string | undefined = import.meta.env.PASSWORD;
+
+if (!PASSWORD) {
+  throw new Error("PASSWORD no está definido");
+}
+
+  const modal = document.getElementById('passwordModal');
+  const content = document.getElementById('adminContent');
+  const input = document.getElementById('passwordInput') as HTMLInputElement;
+  const submitBtn = document.getElementById('submitPassword');
+  const errorMsg = document.getElementById('errorMessage');
+
+  // Verificar si ya está autenticado en esta sesión
+  if (sessionStorage.getItem('adminAuth') === 'true') {
+    modal?.classList.add('hidden');
+    content?.classList.remove('hidden');
+  }
+
+  submitBtn?.addEventListener('click', checkPassword);
+  input?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  function checkPassword() {
+    if (input?.value === PASSWORD) {
+      sessionStorage.setItem('adminAuth', 'true');
+      modal?.classList.add('hidden');
+      content?.classList.remove('hidden');
+      errorMsg?.classList.add('hidden');
+    } else {
+      errorMsg?.classList.remove('hidden');
+      input!.value = '';
+      input?.focus();
+    }
+  }
+
+  // Auto-focus en el input
+  input?.focus();
+  
+  // Datos del grupo A
+  let groupAPlayers: any[] = [];
+  let groupAMatches: any[] = [];
+
+  // Cargar datos desde localStorage
+  function loadGroupData() {
+    const savedPlayers = localStorage.getItem('groupAPlayers');
+    const savedMatches = localStorage.getItem('groupAMatches');
+    
+    if (savedPlayers) groupAPlayers = JSON.parse(savedPlayers);
+    if (savedMatches) groupAMatches = JSON.parse(savedMatches);
+    
+    updateStandings();
+    updateMatchHistory();
+    updateMatchSelects();
+  }
+
+  // Guardar jugadores del grupo
+  document.getElementById('saveGroupA')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('playerA1') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('playerA2') as HTMLSelectElement).value;
+    const p3 = (document.getElementById('playerA3') as HTMLSelectElement).value;
+    const p4 = (document.getElementById('playerA4') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !p3 || !p4) {
+      alert('Debes seleccionar los 4 jugadores');
+      return;
+    }
+
+    if (new Set([p1, p2, p3, p4]).size !== 4) {
+      alert('No puedes seleccionar el mismo jugador dos veces');
+      return;
+    }
+
+    groupAPlayers = [
+      { id: p1, name: getPlayerName(p1), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p2, name: getPlayerName(p2), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p3, name: getPlayerName(p3), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p4, name: getPlayerName(p4), played: 0, wins: 0, losses: 0, points: 0 }
+    ];
+
+    localStorage.setItem('groupAPlayers', JSON.stringify(groupAPlayers));
+    updateStandings();
+    updateMatchSelects();
+    alert('Grupo A guardado correctamente');
+  });
+
+  // Obtener nombre del jugador
+  function getPlayerName(id: string) {
+    const select = document.getElementById('playerA1') as HTMLSelectElement;
+    const option = select.querySelector(`option[value="${id}"]`);
+    return option?.textContent || 'Unknown';
+  }
+
+  // Actualizar tabla de posiciones
+  function updateStandings() {
+    const tbody = document.getElementById('standingsA');
+    if (!tbody) return;
+
+    if (groupAPlayers.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">Selecciona los jugadores del grupo</td></tr>';
+      return;
+    }
+
+    // Calcular estadísticas desde los partidos
+    groupAPlayers.forEach(player => {
+      player.played = 0;
+      player.wins = 0;
+      player.losses = 0;
+      player.points = 0;
+    });
+
+    groupAMatches.forEach((match: any) => {
+      const p1 = groupAPlayers.find(p => p.id === match.player1);
+      const p2 = groupAPlayers.find(p => p.id === match.player2);
+      
+      if (p1 && p2) {
+        p1.played++;
+        p2.played++;
+        
+        if (match.winner === match.player1) {
+          p1.wins++;
+          p1.points += 3;
+          p2.losses++;
+        } else {
+          p2.wins++;
+          p2.points += 3;
+          p1.losses++;
+        }
+      }
+    });
+
+    // Ordenar por puntos
+    const sorted = [...groupAPlayers].sort((a, b) => b.points - a.points);
+
+    tbody.innerHTML = sorted.map((player, index) => `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-3 font-bold">${index + 1}</td>
+        <td class="p-3 font-semibold">${player.name}</td>
+        <td class="p-3 text-center">${player.played}</td>
+        <td class="p-3 text-center text-green-600 font-bold">${player.wins}</td>
+        <td class="p-3 text-center text-red-600 font-bold">${player.losses}</td>
+        <td class="p-3 text-center font-bold text-[var(--color-accent)]">${player.points}</td>
+      </tr>
+    `).join('');
+  }
+
+  // Actualizar selectores de partidos
+  function updateMatchSelects() {
+    const select1 = document.getElementById('matchPlayer1A') as HTMLSelectElement;
+    const select2 = document.getElementById('matchPlayer2A') as HTMLSelectElement;
+    
+    if (!select1 || !select2) return;
+
+    const options = groupAPlayers.map(p => 
+      `<option value="${p.id}">${p.name}</option>`
+    ).join('');
+
+    select1.innerHTML = '<option value="">Jugador 1</option>' + options;
+    select2.innerHTML = '<option value="">Jugador 2</option>' + options;
+  }
+
+  // Registrar partido
+  document.getElementById('addMatchA')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('matchPlayer1A') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('matchPlayer2A') as HTMLSelectElement).value;
+    const game = (document.getElementById('matchGameA') as HTMLSelectElement).value;
+    const winner = (document.getElementById('matchWinnerA') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !game || !winner) {
+      alert('Completa todos los campos');
+      return;
+    }
+
+    if (p1 === p2) {
+      alert('Los jugadores deben ser diferentes');
+      return;
+    }
+
+    const match = {
+      player1: p1,
+      player2: p2,
+      game: game,
+      winner: winner === '1' ? p1 : p2,
+      timestamp: Date.now()
+    };
+
+    groupAMatches.push(match);
+    localStorage.setItem('groupAMatches', JSON.stringify(groupAMatches));
+    
+    updateStandings();
+    updateMatchHistory();
+    
+    // Limpiar campos
+    (document.getElementById('matchGameA') as HTMLSelectElement).value = '';
+    (document.getElementById('matchWinnerA') as HTMLSelectElement).value = '';
+  });
+
+  // Actualizar historial
+  function updateMatchHistory() {
+    const container = document.getElementById('matchHistoryA');
+    if (!container) return;
+
+    if (groupAMatches.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 text-center">No hay partidos registrados</p>';
+      return;
+    }
+
+    container.innerHTML = groupAMatches.slice().reverse().map((match: any) => {
+      const p1Name = groupAPlayers.find(p => p.id === match.player1)?.name || 'Unknown';
+      const p2Name = groupAPlayers.find(p => p.id === match.player2)?.name || 'Unknown';
+      const winnerName = groupAPlayers.find(p => p.id === match.winner)?.name || 'Unknown';
+      
+      return `
+        <div class="bg-[var(--color-background)] p-4 rounded-lg">
+          <div class="flex justify-between items-center flex-wrap gap-2">
+            <div class="font-semibold">
+              <span class="${match.winner === match.player1 ? 'text-green-600 font-bold' : ''}">${p1Name}</span>
+              vs
+              <span class="${match.winner === match.player2 ? 'text-green-600 font-bold' : ''}">${p2Name}</span>
+            </div>
+            <div class="text-sm">
+              <span class="bg-[var(--color-accent)] text-white px-3 py-1 rounded-full">${match.game}</span>
+            </div>
+          </div>
+          <div class="text-sm text-gray-600 mt-2">
+            Ganador: <span class="font-bold text-green-600">${winnerName}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Cambio de tabs
+  document.querySelectorAll('.group-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const group = tab.getAttribute('data-group');
+      
+      // Actualizar tabs
+      document.querySelectorAll('.group-tab').forEach(t => {
+        t.classList.remove('active', 'bg-[var(--color-accent)]', 'text-white');
+        t.classList.add('bg-gray-300', 'text-gray-700');
+      });
+      tab.classList.add('active', 'bg-[var(--color-accent)]', 'text-white');
+      tab.classList.remove('bg-gray-300', 'text-gray-700');
+      
+      // Mostrar contenido
+      document.querySelectorAll('.group-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.querySelector(`.group-content[data-group="${group}"]`)?.classList.remove('hidden');
+    });
+  });
+
+  // Resetear grupo A
+  document.getElementById('resetGroupA')?.addEventListener('click', () => {
+    if (!confirm('¿Estás seguro? Esto borrará todos los jugadores y partidos del Grupo A. Esta acción no se puede deshacer.')) {
+      return;
+    }
+
+    // Limpiar datos
+    groupAPlayers = [];
+    groupAMatches = [];
+    
+    // Limpiar localStorage
+    localStorage.removeItem('groupAPlayers');
+    localStorage.removeItem('groupAMatches');
+    
+    // Limpiar selectores de jugadores
+    (document.getElementById('playerA1') as HTMLSelectElement).value = '';
+    (document.getElementById('playerA2') as HTMLSelectElement).value = '';
+    (document.getElementById('playerA3') as HTMLSelectElement).value = '';
+    (document.getElementById('playerA4') as HTMLSelectElement).value = '';
+    
+    // Actualizar interfaz
+    updateStandings();
+    updateMatchHistory();
+    updateMatchSelects();
+    
+    alert('Grupo A reseteado correctamente');
+  });
+  
+  // Cargar datos al inicio
+  loadGroupData();
+</script>
+
+<style>
+  .group-tab.active {
+    background-color: var(--color-accent);
+    color: white;
+  }
+</style>
+</BaseLayout>
