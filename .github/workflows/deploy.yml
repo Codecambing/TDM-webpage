@@ -32,17 +32,12 @@ jobs:
       
       - name: Install dependencies
         run: npm ci
-
-      - name: Run app
-        env:
-          PASSWORD: ${{ secrets.PASSWORD_GROUPSTAGE_EDITOR }}
-        run: |
-          node index.js
       
       - name: Build Astro site
         env:
           OSU_CLIENT_ID: ${{ secrets.OSU_CLIENT_ID }}
           OSU_CLIENT_SECRET: ${{ secrets.OSU_CLIENT_SECRET }}
+          PASSWORD: ${{ secrets.PASSWORD_GROUPSTAGE_EDITOR }}
         run: npm run build
       
       - name: Upload artifact
