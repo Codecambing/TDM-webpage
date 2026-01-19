@@ -20,6 +20,7 @@ const playerOsuIds = [
   4057299,   // NagaZer
   11207004,  // tfge
   18946207,  // nekore
+  6194830, // Shiny Froakie
 ];
 
 const socialLinks: Record<number, { twitter: string; twitch: string }> = {
@@ -38,6 +39,7 @@ const socialLinks: Record<number, { twitter: string; twitch: string }> = {
   4057299: { twitter: "https://x.com/nagazerx", twitch: "https://www.twitch.tv/nagazer" },
   11207004: { twitter: "https://x.com/turtl17", twitch: "https://www.twitch.tv/tfgestu" },
   18946207: { twitter: "https://x.com/notnekore", twitch: "https://www.twitch.tv/nekorecl" },
+  6194830: { twitter: "https://x.com/ShinyFroakie4", twitch: "https://www.twitch.tv/shinyfroakkie" },
 };
 
 let osuUsers: any[] = [];
@@ -66,18 +68,6 @@ const players = osuUsers.map((user: any, index: number) => {
 
 players.push(
   {
-    id: 16,
-    name: "???",
-    photo: `${base}mascota.png`,
-    rank: "#???",
-    chile: "#???",
-    pp: "???pp",
-    accuracy: "???%",
-    perfil: "",
-    twitter: "",
-    twitch: ""
-  },
-  {
     id: 17,
     name: "???",
     photo: `${base}mascota.png`,
@@ -95,7 +85,7 @@ players.push(
 <BaseLayout 
   title="Torre del Mago - Participantes"
   description="Conoce a los 17 players invitados del team a participar por el torneo!"
-  image="ogbg.png"
+  image="playersbg.png"
 >
   <section class="max-w-7xl mx-auto px-6 py-12">
     <h1 class="text-5xl font-bold text-center mb-12 font-space-mono text-[var(--color-text)]">
