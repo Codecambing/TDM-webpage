@@ -231,27 +231,383 @@ const games = [
         </div>
       </div>
 
-      <!-- Grupos B, C, D (estructura similar) -->
+<!-- Grupo B -->
       <div class="group-content hidden" data-group="B">
         <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
-          <p class="text-center text-gray-500">Grupo B - En construcción (misma estructura que Grupo A)</p>
+          
+          <!-- Selector de Jugadores -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Seleccionar Jugadores del Grupo B
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <select id="playerB1" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerB2" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerB3" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 3</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerB4" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 4</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+            </div>
+            <button 
+              id="saveGroupB"
+              class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
+            >
+              Guardar Grupo B
+            </button>
+          </div>
+
+          <!-- Tabla de Posiciones -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Tabla de Posiciones
+            </h2>
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="bg-[var(--color-navbar)]">
+                    <th class="p-3 text-left font-bold">Pos</th>
+                    <th class="p-3 text-left font-bold">Jugador</th>
+                    <th class="p-3 text-center font-bold">PJ</th>
+                    <th class="p-3 text-center font-bold">G</th>
+                    <th class="p-3 text-center font-bold">P</th>
+                    <th class="p-3 text-center font-bold">Pts</th>
+                  </tr>
+                </thead>
+                <tbody id="standingsB">
+                  <tr class="border-b">
+                    <td colspan="6" class="p-4 text-center text-gray-500">
+                      Selecciona los jugadores del grupo
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Registrar Partidos -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Registrar Partido
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchPlayer1B" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+              </select>
+              <select id="matchPlayer2B" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchGameB" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Seleccionar Juego</option>
+                {games.map(game => (
+                  <option value={game}>{game}</option>
+                ))}
+              </select>
+              <select id="matchWinnerB" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Ganador</option>
+                <option value="1">Jugador 1</option>
+                <option value="2">Jugador 2</option>
+              </select>
+            </div>
+            <div class="flex gap-4">
+              <button 
+                id="addMatchB"
+                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
+              >
+                Registrar Partido
+              </button>
+              <button 
+                id="resetGroupB"
+                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
+              >
+                🗑️ Resetear Grupo
+              </button>
+            </div>
+          </div>
+
+          <!-- Historial de Partidos -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Historial de Partidos
+            </h2>
+            <div id="matchHistoryB" class="space-y-3">
+              <p class="text-gray-500 text-center">No hay partidos registrados</p>
+            </div>
+          </div>
+
         </div>
       </div>
 
+      <!-- Grupo C -->
       <div class="group-content hidden" data-group="C">
         <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
-          <p class="text-center text-gray-500">Grupo C - En construcción (misma estructura que Grupo A)</p>
+          
+          <!-- Selector de Jugadores -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Seleccionar Jugadores del Grupo C
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <select id="playerC1" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerC2" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerC3" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 3</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerC4" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 4</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+            </div>
+            <button 
+              id="saveGroupC"
+              class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
+            >
+              Guardar Grupo C
+            </button>
+          </div>
+
+          <!-- Tabla de Posiciones -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Tabla de Posiciones
+            </h2>
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="bg-[var(--color-navbar)]">
+                    <th class="p-3 text-left font-bold">Pos</th>
+                    <th class="p-3 text-left font-bold">Jugador</th>
+                    <th class="p-3 text-center font-bold">PJ</th>
+                    <th class="p-3 text-center font-bold">G</th>
+                    <th class="p-3 text-center font-bold">P</th>
+                    <th class="p-3 text-center font-bold">Pts</th>
+                  </tr>
+                </thead>
+                <tbody id="standingsC">
+                  <tr class="border-b">
+                    <td colspan="6" class="p-4 text-center text-gray-500">
+                      Selecciona los jugadores del grupo
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Registrar Partidos -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Registrar Partido
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchPlayer1C" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+              </select>
+              <select id="matchPlayer2C" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchGameC" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Seleccionar Juego</option>
+                {games.map(game => (
+                  <option value={game}>{game}</option>
+                ))}
+              </select>
+              <select id="matchWinnerC" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Ganador</option>
+                <option value="1">Jugador 1</option>
+                <option value="2">Jugador 2</option>
+              </select>
+            </div>
+            <div class="flex gap-4">
+              <button 
+                id="addMatchC"
+                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
+              >
+                Registrar Partido
+              </button>
+              <button 
+                id="resetGroupC"
+                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
+              >
+                🗑️ Resetear Grupo
+              </button>
+            </div>
+          </div>
+
+          <!-- Historial de Partidos -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Historial de Partidos
+            </h2>
+            <div id="matchHistoryC" class="space-y-3">
+              <p class="text-gray-500 text-center">No hay partidos registrados</p>
+            </div>
+          </div>
+
         </div>
       </div>
 
+      <!-- Grupo D -->
       <div class="group-content hidden" data-group="D">
         <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
-          <p class="text-center text-gray-500">Grupo D - En construcción (misma estructura que Grupo A)</p>
+          
+          <!-- Selector de Jugadores -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Seleccionar Jugadores del Grupo D
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <select id="playerD1" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerD2" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerD3" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 3</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+              <select id="playerD4" class="player-select p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 4</option>
+                {allPlayers.map(player => (
+                  <option value={player.id}>{player.name}</option>
+                ))}
+              </select>
+            </div>
+            <button 
+              id="saveGroupD"
+              class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
+            >
+              Guardar Grupo D
+            </button>
+          </div>
+
+          <!-- Tabla de Posiciones -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Tabla de Posiciones
+            </h2>
+            <div class="overflow-x-auto">
+              <table class="w-full border-collapse">
+                <thead>
+                  <tr class="bg-[var(--color-navbar)]">
+                    <th class="p-3 text-left font-bold">Pos</th>
+                    <th class="p-3 text-left font-bold">Jugador</th>
+                    <th class="p-3 text-center font-bold">PJ</th>
+                    <th class="p-3 text-center font-bold">G</th>
+                    <th class="p-3 text-center font-bold">P</th>
+                    <th class="p-3 text-center font-bold">Pts</th>
+                  </tr>
+                </thead>
+                <tbody id="standingsD">
+                  <tr class="border-b">
+                    <td colspan="6" class="p-4 text-center text-gray-500">
+                      Selecciona los jugadores del grupo
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Registrar Partidos -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Registrar Partido
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchPlayer1D" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 1</option>
+              </select>
+              <select id="matchPlayer2D" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Jugador 2</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <select id="matchGameD" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Seleccionar Juego</option>
+                {games.map(game => (
+                  <option value={game}>{game}</option>
+                ))}
+              </select>
+              <select id="matchWinnerD" class="p-3 border-2 border-gray-300 rounded-lg font-semibold">
+                <option value="">Ganador</option>
+                <option value="1">Jugador 1</option>
+                <option value="2">Jugador 2</option>
+              </select>
+            </div>
+            <div class="flex gap-4">
+              <button 
+                id="addMatchD"
+                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
+              >
+                Registrar Partido
+              </button>
+              <button 
+                id="resetGroupD"
+                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
+              >
+                🗑️ Resetear Grupo
+              </button>
+            </div>
+          </div>
+
+          <!-- Historial de Partidos -->
+          <div>
+            <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+              Historial de Partidos
+            </h2>
+            <div id="matchHistoryD" class="space-y-3">
+              <p class="text-gray-500 text-center">No hay partidos registrados</p>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
-
   </section>
 </BaseLayout>
  
@@ -537,13 +893,588 @@ if (!PASSWORD) {
     alert('Grupo A reseteado correctamente');
   });
   
+  // ========== GRUPO B ==========
+  let groupBPlayers: any[] = [];
+  let groupBMatches: any[] = [];
+
+  document.getElementById('saveGroupB')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('playerB1') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('playerB2') as HTMLSelectElement).value;
+    const p3 = (document.getElementById('playerB3') as HTMLSelectElement).value;
+    const p4 = (document.getElementById('playerB4') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !p3 || !p4) {
+      alert('Debes seleccionar los 4 jugadores');
+      return;
+    }
+
+    if (new Set([p1, p2, p3, p4]).size !== 4) {
+      alert('No puedes seleccionar el mismo jugador dos veces');
+      return;
+    }
+
+    groupBPlayers = [
+      { id: p1, name: getPlayerNameB(p1), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p2, name: getPlayerNameB(p2), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p3, name: getPlayerNameB(p3), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p4, name: getPlayerNameB(p4), played: 0, wins: 0, losses: 0, points: 0 }
+    ];
+
+    localStorage.setItem('groupBPlayers', JSON.stringify(groupBPlayers));
+    updateStandingsB();
+    updateMatchSelectsB();
+    alert('Grupo B guardado correctamente');
+  });
+
+  function getPlayerNameB(id: string) {
+    const select = document.getElementById('playerB1') as HTMLSelectElement;
+    const option = select.querySelector(`option[value="${id}"]`);
+    return option?.textContent || 'Unknown';
+  }
+
+  function updateStandingsB() {
+    const tbody = document.getElementById('standingsB');
+    if (!tbody) return;
+
+    if (groupBPlayers.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">Selecciona los jugadores del grupo</td></tr>';
+      return;
+    }
+
+    groupBPlayers.forEach(player => {
+      player.played = 0;
+      player.wins = 0;
+      player.losses = 0;
+      player.points = 0;
+    });
+
+    groupBMatches.forEach((match: any) => {
+      const p1 = groupBPlayers.find(p => p.id === match.player1);
+      const p2 = groupBPlayers.find(p => p.id === match.player2);
+      
+      if (p1 && p2) {
+        p1.played++;
+        p2.played++;
+        
+        if (match.winner === match.player1) {
+          p1.wins++;
+          p1.points += 3;
+          p2.losses++;
+        } else {
+          p2.wins++;
+          p2.points += 3;
+          p1.losses++;
+        }
+      }
+    });
+
+    const sorted = [...groupBPlayers].sort((a, b) => b.points - a.points);
+
+    tbody.innerHTML = sorted.map((player, index) => `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-3 font-bold">${index + 1}</td>
+        <td class="p-3 font-semibold">${player.name}</td>
+        <td class="p-3 text-center">${player.played}</td>
+        <td class="p-3 text-center text-green-600 font-bold">${player.wins}</td>
+        <td class="p-3 text-center text-red-600 font-bold">${player.losses}</td>
+        <td class="p-3 text-center font-bold text-[var(--color-accent)]">${player.points}</td>
+      </tr>
+    `).join('');
+  }
+
+  function updateMatchSelectsB() {
+    const select1 = document.getElementById('matchPlayer1B') as HTMLSelectElement;
+    const select2 = document.getElementById('matchPlayer2B') as HTMLSelectElement;
+    
+    if (!select1 || !select2) return;
+
+    const options = groupBPlayers.map(p => 
+      `<option value="${p.id}">${p.name}</option>`
+    ).join('');
+
+    select1.innerHTML = '<option value="">Jugador 1</option>' + options;
+    select2.innerHTML = '<option value="">Jugador 2</option>' + options;
+  }
+
+  document.getElementById('addMatchB')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('matchPlayer1B') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('matchPlayer2B') as HTMLSelectElement).value;
+    const game = (document.getElementById('matchGameB') as HTMLSelectElement).value;
+    const winner = (document.getElementById('matchWinnerB') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !game || !winner) {
+      alert('Completa todos los campos');
+      return;
+    }
+
+    if (p1 === p2) {
+      alert('Los jugadores deben ser diferentes');
+      return;
+    }
+
+    const match = {
+      player1: p1,
+      player2: p2,
+      game: game,
+      winner: winner === '1' ? p1 : p2,
+      timestamp: Date.now()
+    };
+
+    groupBMatches.push(match);
+    localStorage.setItem('groupBMatches', JSON.stringify(groupBMatches));
+    
+    updateStandingsB();
+    updateMatchHistoryB();
+    
+    (document.getElementById('matchGameB') as HTMLSelectElement).value = '';
+    (document.getElementById('matchWinnerB') as HTMLSelectElement).value = '';
+  });
+
+  function updateMatchHistoryB() {
+    const container = document.getElementById('matchHistoryB');
+    if (!container) return;
+
+    if (groupBMatches.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 text-center">No hay partidos registrados</p>';
+      return;
+    }
+
+    container.innerHTML = groupBMatches.slice().reverse().map((match: any) => {
+      const p1Name = groupBPlayers.find(p => p.id === match.player1)?.name || 'Unknown';
+      const p2Name = groupBPlayers.find(p => p.id === match.player2)?.name || 'Unknown';
+      const winnerName = groupBPlayers.find(p => p.id === match.winner)?.name || 'Unknown';
+      
+      return `
+        <div class="bg-[var(--color-background)] p-4 rounded-lg">
+          <div class="flex justify-between items-center flex-wrap gap-2">
+            <div class="font-semibold">
+              <span class="${match.winner === match.player1 ? 'text-green-600 font-bold' : ''}">${p1Name}</span>
+              vs
+              <span class="${match.winner === match.player2 ? 'text-green-600 font-bold' : ''}">${p2Name}</span>
+            </div>
+            <div class="text-sm">
+              <span class="bg-[var(--color-accent)] text-white px-3 py-1 rounded-full">${match.game}</span>
+            </div>
+          </div>
+          <div class="text-sm text-gray-600 mt-2">
+            Ganador: <span class="font-bold text-green-600">${winnerName}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('resetGroupB')?.addEventListener('click', () => {
+    if (!confirm('¿Estás seguro? Esto borrará todos los jugadores y partidos del Grupo B.')) {
+      return;
+    }
+
+    groupBPlayers = [];
+    groupBMatches = [];
+    
+    localStorage.removeItem('groupBPlayers');
+    localStorage.removeItem('groupBMatches');
+    
+    (document.getElementById('playerB1') as HTMLSelectElement).value = '';
+    (document.getElementById('playerB2') as HTMLSelectElement).value = '';
+    (document.getElementById('playerB3') as HTMLSelectElement).value = '';
+    (document.getElementById('playerB4') as HTMLSelectElement).value = '';
+    
+    updateStandingsB();
+    updateMatchHistoryB();
+    updateMatchSelectsB();
+    
+    alert('Grupo B reseteado correctamente');
+  });
+
+        // ========== GRUPO C ==========
+  let groupCPlayers: any[] = [];
+  let groupCMatches: any[] = [];
+
+  document.getElementById('saveGroupC')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('playerC1') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('playerC2') as HTMLSelectElement).value;
+    const p3 = (document.getElementById('playerC3') as HTMLSelectElement).value;
+    const p4 = (document.getElementById('playerC4') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !p3 || !p4) {
+      alert('Debes seleccionar los 4 jugadores');
+      return;
+    }
+
+    if (new Set([p1, p2, p3, p4]).size !== 4) {
+      alert('No puedes seleccionar el mismo jugador dos veces');
+      return;
+    }
+
+    groupCPlayers = [
+      { id: p1, name: getPlayerNameC(p1), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p2, name: getPlayerNameC(p2), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p3, name: getPlayerNameC(p3), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p4, name: getPlayerNameC(p4), played: 0, wins: 0, losses: 0, points: 0 }
+    ];
+
+    localStorage.setItem('groupCPlayers', JSON.stringify(groupCPlayers));
+    updateStandingsC();
+    updateMatchSelectsC();
+    alert('Grupo C guardado correctamente');
+  });
+
+  function getPlayerNameC(id: string) {
+    const select = document.getElementById('playerC1') as HTMLSelectElement;
+    const option = select.querySelector(`option[value="${id}"]`);
+    return option?.textContent || 'Unknown';
+  }
+
+  function updateStandingsC() {
+    const tbody = document.getElementById('standingsC');
+    if (!tbody) return;
+
+    if (groupCPlayers.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">Selecciona los jugadores del grupo</td></tr>';
+      return;
+    }
+
+    groupCPlayers.forEach(player => {
+      player.played = 0;
+      player.wins = 0;
+      player.losses = 0;
+      player.points = 0;
+    });
+
+    groupCMatches.forEach((match: any) => {
+      const p1 = groupCPlayers.find(p => p.id === match.player1);
+      const p2 = groupCPlayers.find(p => p.id === match.player2);
+      
+      if (p1 && p2) {
+        p1.played++;
+        p2.played++;
+        
+        if (match.winner === match.player1) {
+          p1.wins++;
+          p1.points += 3;
+          p2.losses++;
+        } else {
+          p2.wins++;
+          p2.points += 3;
+          p1.losses++;
+        }
+      }
+    });
+
+    const sorted = [...groupCPlayers].sort((a, b) => b.points - a.points);
+
+    tbody.innerHTML = sorted.map((player, index) => `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-3 font-bold">${index + 1}</td>
+        <td class="p-3 font-semibold">${player.name}</td>
+        <td class="p-3 text-center">${player.played}</td>
+        <td class="p-3 text-center text-green-600 font-bold">${player.wins}</td>
+        <td class="p-3 text-center text-red-600 font-bold">${player.losses}</td>
+        <td class="p-3 text-center font-bold text-[var(--color-accent)]">${player.points}</td>
+      </tr>
+    `).join('');
+  }
+
+  function updateMatchSelectsC() {
+    const select1 = document.getElementById('matchPlayer1C') as HTMLSelectElement;
+    const select2 = document.getElementById('matchPlayer2C') as HTMLSelectElement;
+    
+    if (!select1 || !select2) return;
+
+    const options = groupCPlayers.map(p => 
+      `<option value="${p.id}">${p.name}</option>`
+    ).join('');
+
+    select1.innerHTML = '<option value="">Jugador 1</option>' + options;
+    select2.innerHTML = '<option value="">Jugador 2</option>' + options;
+  }
+
+  document.getElementById('addMatchC')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('matchPlayer1C') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('matchPlayer2C') as HTMLSelectElement).value;
+    const game = (document.getElementById('matchGameC') as HTMLSelectElement).value;
+    const winner = (document.getElementById('matchWinnerC') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !game || !winner) {
+      alert('Completa todos los campos');
+      return;
+    }
+
+    if (p1 === p2) {
+      alert('Los jugadores deben ser diferentes');
+      return;
+    }
+
+    const match = {
+      player1: p1,
+      player2: p2,
+      game: game,
+      winner: winner === '1' ? p1 : p2,
+      timestamp: Date.now()
+    };
+
+    groupCMatches.push(match);
+    localStorage.setItem('groupCMatches', JSON.stringify(groupCMatches));
+    
+    updateStandingsC();
+    updateMatchHistoryC();
+    
+    (document.getElementById('matchGameC') as HTMLSelectElement).value = '';
+    (document.getElementById('matchWinnerC') as HTMLSelectElement).value = '';
+  });
+
+  function updateMatchHistoryC() {
+    const container = document.getElementById('matchHistoryC');
+    if (!container) return;
+
+    if (groupCMatches.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 text-center">No hay partidos registrados</p>';
+      return;
+    }
+
+    container.innerHTML = groupCMatches.slice().reverse().map((match: any) => {
+      const p1Name = groupCPlayers.find(p => p.id === match.player1)?.name || 'Unknown';
+      const p2Name = groupCPlayers.find(p => p.id === match.player2)?.name || 'Unknown';
+      const winnerName = groupCPlayers.find(p => p.id === match.winner)?.name || 'Unknown';
+      
+      return `
+        <div class="bg-[var(--color-background)] p-4 rounded-lg">
+          <div class="flex justify-between items-center flex-wrap gap-2">
+            <div class="font-semibold">
+              <span class="${match.winner === match.player1 ? 'text-green-600 font-bold' : ''}">${p1Name}</span>
+              vs
+              <span class="${match.winner === match.player2 ? 'text-green-600 font-bold' : ''}">${p2Name}</span>
+            </div>
+            <div class="text-sm">
+              <span class="bg-[var(--color-accent)] text-white px-3 py-1 rounded-full">${match.game}</span>
+            </div>
+          </div>
+          <div class="text-sm text-gray-600 mt-2">
+            Ganador: <span class="font-bold text-green-600">${winnerName}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('resetGroupC')?.addEventListener('click', () => {
+    if (!confirm('¿Estás seguro? Esto borrará todos los jugadores y partidos del Grupo C.')) {
+      return;
+    }
+
+    groupCPlayers = [];
+    groupCMatches = [];
+    
+    localStorage.removeItem('groupCPlayers');
+    localStorage.removeItem('groupCMatches');
+    
+    (document.getElementById('playerC1') as HTMLSelectElement).value = '';
+    (document.getElementById('playerC2') as HTMLSelectElement).value = '';
+    (document.getElementById('playerC3') as HTMLSelectElement).value = '';
+    (document.getElementById('playerC4') as HTMLSelectElement).value = '';
+    
+    updateStandingsC();
+    updateMatchHistoryC();
+    updateMatchSelectsC();
+    
+    alert('Grupo C reseteado correctamente');
+  });
+
+    // ========== GRUPO D ==========
+  let groupDPlayers: any[] = [];
+  let groupDMatches: any[] = [];
+
+  document.getElementById('saveGroupD')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('playerD1') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('playerD2') as HTMLSelectElement).value;
+    const p3 = (document.getElementById('playerD3') as HTMLSelectElement).value;
+    const p4 = (document.getElementById('playerD4') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !p3 || !p4) {
+      alert('Debes seleccionar los 4 jugadores');
+      return;
+    }
+
+    if (new Set([p1, p2, p3, p4]).size !== 4) {
+      alert('No puedes seleccionar el mismo jugador dos veces');
+      return;
+    }
+
+    groupDPlayers = [
+      { id: p1, name: getPlayerNameD(p1), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p2, name: getPlayerNameD(p2), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p3, name: getPlayerNameD(p3), played: 0, wins: 0, losses: 0, points: 0 },
+      { id: p4, name: getPlayerNameD(p4), played: 0, wins: 0, losses: 0, points: 0 }
+    ];
+
+    localStorage.setItem('groupDPlayers', JSON.stringify(groupDPlayers));
+    updateStandingsD();
+    updateMatchSelectsD();
+    alert('Grupo D guardado correctamente');
+  });
+
+  function getPlayerNameD(id: string) {
+    const select = document.getElementById('playerD1') as HTMLSelectElement;
+    const option = select.querySelector(`option[value="${id}"]`);
+    return option?.textContent || 'Unknown';
+  }
+
+  function updateStandingsD() {
+    const tbody = document.getElementById('standingsD');
+    if (!tbody) return;
+
+    if (groupDPlayers.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">Selecciona los jugadores del grupo</td></tr>';
+      return;
+    }
+
+    groupDPlayers.forEach(player => {
+      player.played = 0;
+      player.wins = 0;
+      player.losses = 0;
+      player.points = 0;
+    });
+
+    groupDMatches.forEach((match: any) => {
+      const p1 = groupDPlayers.find(p => p.id === match.player1);
+      const p2 = groupDPlayers.find(p => p.id === match.player2);
+      
+      if (p1 && p2) {
+        p1.played++;
+        p2.played++;
+        
+        if (match.winner === match.player1) {
+          p1.wins++;
+          p1.points += 3;
+          p2.losses++;
+        } else {
+          p2.wins++;
+          p2.points += 3;
+          p1.losses++;
+        }
+      }
+    });
+
+    const sorted = [...groupDPlayers].sort((a, b) => b.points - a.points);
+
+    tbody.innerHTML = sorted.map((player, index) => `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-3 font-bold">${index + 1}</td>
+        <td class="p-3 font-semibold">${player.name}</td>
+        <td class="p-3 text-center">${player.played}</td>
+        <td class="p-3 text-center text-green-600 font-bold">${player.wins}</td>
+        <td class="p-3 text-center text-red-600 font-bold">${player.losses}</td>
+        <td class="p-3 text-center font-bold text-[var(--color-accent)]">${player.points}</td>
+      </tr>
+    `).join('');
+  }
+
+  function updateMatchSelectsD() {
+    const select1 = document.getElementById('matchPlayer1D') as HTMLSelectElement;
+    const select2 = document.getElementById('matchPlayer2D') as HTMLSelectElement;
+    
+    if (!select1 || !select2) return;
+
+    const options = groupDPlayers.map(p => 
+      `<option value="${p.id}">${p.name}</option>`
+    ).join('');
+
+    select1.innerHTML = '<option value="">Jugador 1</option>' + options;
+    select2.innerHTML = '<option value="">Jugador 2</option>' + options;
+  }
+
+  document.getElementById('addMatchD')?.addEventListener('click', () => {
+    const p1 = (document.getElementById('matchPlayer1D') as HTMLSelectElement).value;
+    const p2 = (document.getElementById('matchPlayer2D') as HTMLSelectElement).value;
+    const game = (document.getElementById('matchGameD') as HTMLSelectElement).value;
+    const winner = (document.getElementById('matchWinnerD') as HTMLSelectElement).value;
+
+    if (!p1 || !p2 || !game || !winner) {
+      alert('Completa todos los campos');
+      return;
+    }
+
+    if (p1 === p2) {
+      alert('Los jugadores deben ser diferentes');
+      return;
+    }
+
+    const match = {
+      player1: p1,
+      player2: p2,
+      game: game,
+      winner: winner === '1' ? p1 : p2,
+      timestamp: Date.now()
+    };
+
+    groupDMatches.push(match);
+    localStorage.setItem('groupDMatches', JSON.stringify(groupDMatches));
+    
+    updateStandingsD();
+    updateMatchHistoryD();
+    
+    (document.getElementById('matchGameD') as HTMLSelectElement).value = '';
+    (document.getElementById('matchWinnerD') as HTMLSelectElement).value = '';
+  });
+
+  function updateMatchHistoryD() {
+    const container = document.getElementById('matchHistoryD');
+    if (!container) return;
+
+    if (groupDMatches.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 text-center">No hay partidos registrados</p>';
+      return;
+    }
+
+    container.innerHTML = groupDMatches.slice().reverse().map((match: any) => {
+      const p1Name = groupDPlayers.find(p => p.id === match.player1)?.name || 'Unknown';
+      const p2Name = groupDPlayers.find(p => p.id === match.player2)?.name || 'Unknown';
+      const winnerName = groupDPlayers.find(p => p.id === match.winner)?.name || 'Unknown';
+      
+      return `
+        <div class="bg-[var(--color-background)] p-4 rounded-lg">
+          <div class="flex justify-between items-center flex-wrap gap-2">
+            <div class="font-semibold">
+              <span class="${match.winner === match.player1 ? 'text-green-600 font-bold' : ''}">${p1Name}</span>
+              vs
+              <span class="${match.winner === match.player2 ? 'text-green-600 font-bold' : ''}">${p2Name}</span>
+            </div>
+            <div class="text-sm">
+              <span class="bg-[var(--color-accent)] text-white px-3 py-1 rounded-full">${match.game}</span>
+            </div>
+          </div>
+          <div class="text-sm text-gray-600 mt-2">
+            Ganador: <span class="font-bold text-green-600">${winnerName}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('resetGroupD')?.addEventListener('click', () => {
+    if (!confirm('¿Estás seguro? Esto borrará todos los jugadores y partidos del Grupo D.')) {
+      return;
+    }
+
+    groupDPlayers = [];
+    groupDMatches = [];
+    
+    localStorage.removeItem('groupDPlayers');
+    localStorage.removeItem('groupDMatches');
+    
+    (document.getElementById('playerD1') as HTMLSelectElement).value = '';
+    (document.getElementById('playerD2') as HTMLSelectElement).value = '';
+    (document.getElementById('playerD3') as HTMLSelectElement).value = '';
+    (document.getElementById('playerD4') as HTMLSelectElement).value = '';
+    
+    updateStandingsD();
+    updateMatchHistoryD();
+    updateMatchSelectsD();
+    
+    alert('Grupo D reseteado correctamente');
+  });
+
   // Cargar datos al inicio
   loadGroupData();
 </script>
-
-<style>
-  .group-tab.active {
-    background-color: var(--color-accent);
-    color: white;
-  }
-</style>

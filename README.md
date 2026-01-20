@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/Logo.svg" alt="Torre del Mago Logo" width="300"/>
+  <img src="./public/Logo.png" alt="Torre del Mago Logo" width="300"/>
   
   # Torre del Mago Invitacional
   
