@@ -1,0 +1,509 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Torre del Mago - Grupos">
+  <section class="max-w-7xl mx-auto px-6 py-12">
+    
+    <h1 class="text-5xl font-bold text-center mb-12 font-space-mono text-[var(--color-text)]">
+      Fase de Grupos
+    </h1>
+
+    <!-- Tabs de Grupos -->
+    <div class="flex justify-center gap-4 mb-8 flex-wrap">
+      <button 
+        class="group-tab active bg-[var(--color-accent)] text-white px-6 py-3 rounded-lg font-bold transition hover:opacity-90"
+        data-group="A"
+      >
+        Grupo A
+      </button>
+      <button 
+        class="group-tab bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-bold transition hover:bg-gray-400"
+        data-group="B"
+      >
+        Grupo B
+      </button>
+      <button 
+        class="group-tab bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-bold transition hover:bg-gray-400"
+        data-group="C"
+      >
+        Grupo C
+      </button>
+      <button 
+        class="group-tab bg-gray-300 text-gray-700 px-6 py-3 rounded-lg font-bold transition hover:bg-gray-400"
+        data-group="D"
+      >
+        Grupo D
+      </button>
+    </div>
+
+    <!-- Contenedor de Grupos -->
+    <div id="groupsContainer">
+      
+      <!-- Grupo A -->
+      <div class="group-content" data-group="A">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          
+          <!-- Mensaje si no hay grupo configurado -->
+          <div id="noGroupA" class="text-center py-12">
+            <div class="text-6xl mb-4">📋</div>
+            <h2 class="text-2xl font-bold mb-2 font-space-mono text-gray-700">
+              Grupo A sin participantes
+            </h2>
+            <p class="text-gray-500">
+              Los participantes del grupo aún no han sido anunciados
+            </p>
+          </div>
+
+          <!-- Contenido del grupo (oculto inicialmente) -->
+          <div id="groupAContent" class="hidden">
+            
+            <!-- Participantes -->
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Participantes
+              </h2>
+              <div id="participantsA" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Se llenará con JavaScript -->
+              </div>
+            </div>
+
+            <!-- Tabla de Posiciones -->
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Tabla de Posiciones
+              </h2>
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                  <thead>
+                    <tr class="bg-[var(--color-navbar)]">
+                      <th class="p-3 text-left font-bold">Pos</th>
+                      <th class="p-3 text-left font-bold">Jugador</th>
+                      <th class="p-3 text-center font-bold">PJ</th>
+                      <th class="p-3 text-center font-bold">G</th>
+                      <th class="p-3 text-center font-bold">P</th>
+                      <th class="p-3 text-center font-bold">Pts</th>
+                    </tr>
+                  </thead>
+                  <tbody id="standingsA">
+                    <!-- Se llenará con JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Historial de Partidos -->
+            <div>
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Historial de Partidos
+              </h2>
+              <div id="matchHistoryA" class="space-y-3">
+                <p class="text-gray-500 text-center">No hay partidos registrados</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Grupo B -->
+      <div class="group-content hidden" data-group="B">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          
+          <div id="noGroupB" class="text-center py-12">
+            <div class="text-6xl mb-4">📋</div>
+            <h2 class="text-2xl font-bold mb-2 font-space-mono text-gray-700">
+              Grupo B sin participantes
+            </h2>
+            <p class="text-gray-500">
+              Los participantes del grupo aún no han sido anunciados
+            </p>
+          </div>
+
+          <div id="groupBContent" class="hidden">
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Participantes
+              </h2>
+              <div id="participantsB" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            </div>
+
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Tabla de Posiciones
+              </h2>
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                  <thead>
+                    <tr class="bg-[var(--color-navbar)]">
+                      <th class="p-3 text-left font-bold">Pos</th>
+                      <th class="p-3 text-left font-bold">Jugador</th>
+                      <th class="p-3 text-center font-bold">PJ</th>
+                      <th class="p-3 text-center font-bold">G</th>
+                      <th class="p-3 text-center font-bold">P</th>
+                      <th class="p-3 text-center font-bold">Pts</th>
+                    </tr>
+                  </thead>
+                  <tbody id="standingsB"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Historial de Partidos
+              </h2>
+              <div id="matchHistoryB" class="space-y-3">
+                <p class="text-gray-500 text-center">No hay partidos registrados</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Grupo C -->
+      <div class="group-content hidden" data-group="C">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          
+          <div id="noGroupC" class="text-center py-12">
+            <div class="text-6xl mb-4">📋</div>
+            <h2 class="text-2xl font-bold mb-2 font-space-mono text-gray-700">
+              Grupo C sin participantes
+            </h2>
+            <p class="text-gray-500">
+              Los participantes del grupo aún no han sido anunciados
+            </p>
+          </div>
+
+          <div id="groupCContent" class="hidden">
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Participantes
+              </h2>
+              <div id="participantsC" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            </div>
+
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Tabla de Posiciones
+              </h2>
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                  <thead>
+                    <tr class="bg-[var(--color-navbar)]">
+                      <th class="p-3 text-left font-bold">Pos</th>
+                      <th class="p-3 text-left font-bold">Jugador</th>
+                      <th class="p-3 text-center font-bold">PJ</th>
+                      <th class="p-3 text-center font-bold">G</th>
+                      <th class="p-3 text-center font-bold">P</th>
+                      <th class="p-3 text-center font-bold">Pts</th>
+                    </tr>
+                  </thead>
+                  <tbody id="standingsC"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Historial de Partidos
+              </h2>
+              <div id="matchHistoryC" class="space-y-3">
+                <p class="text-gray-500 text-center">No hay partidos registrados</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Grupo D -->
+      <div class="group-content hidden" data-group="D">
+        <div class="bg-white/90 rounded-2xl shadow-2xl p-8 border-4 border-[var(--color-navbar)]">
+          
+          <div id="noGroupD" class="text-center py-12">
+            <div class="text-6xl mb-4">📋</div>
+            <h2 class="text-2xl font-bold mb-2 font-space-mono text-gray-700">
+              Grupo D sin participantes
+            </h2>
+            <p class="text-gray-500">
+              Los participantes del grupo aún no han sido anunciados
+            </p>
+          </div>
+
+          <div id="groupDContent" class="hidden">
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Participantes
+              </h2>
+              <div id="participantsD" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            </div>
+
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Tabla de Posiciones
+              </h2>
+              <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                  <thead>
+                    <tr class="bg-[var(--color-navbar)]">
+                      <th class="p-3 text-left font-bold">Pos</th>
+                      <th class="p-3 text-left font-bold">Jugador</th>
+                      <th class="p-3 text-center font-bold">PJ</th>
+                      <th class="p-3 text-center font-bold">G</th>
+                      <th class="p-3 text-center font-bold">P</th>
+                      <th class="p-3 text-center font-bold">Pts</th>
+                    </tr>
+                  </thead>
+                  <tbody id="standingsD"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold mb-4 font-space-mono text-[var(--color-accent)]">
+                Historial de Partidos
+              </h2>
+              <div id="matchHistoryD" class="space-y-3">
+                <p class="text-gray-500 text-center">No hay partidos registrados</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+</BaseLayout>
+
+<script is:inline type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { getFirestore, doc, getDoc, onSnapshot, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+  // Configuración de Firebase (mismas credenciales que en administracion.astro)
+  const firebaseConfig = {
+    apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
+    authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.PUBLIC_FIREBASE_APP_ID
+};
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Cargar y mostrar todos los grupos
+  async function loadAllGroups() {
+    await loadGroup('A');
+    await loadGroup('B');
+    await loadGroup('C');
+    await loadGroup('D');
+  }
+
+  async function loadGroup(groupLetter) {
+    try {
+      console.log(`Cargando grupo ${groupLetter}...`);
+      
+      const playersKey = `group${groupLetter}`;
+      
+      const groupDoc = await getDoc(doc(db, 'groups', playersKey));
+
+      const noGroupDiv = document.getElementById(`noGroup${groupLetter}`);
+      const contentDiv = document.getElementById(`group${groupLetter}Content`);
+
+      if (!groupDoc.exists() || !groupDoc.data().players || groupDoc.data().players.length === 0) {
+        console.log(`Grupo ${groupLetter} no configurado`);
+        noGroupDiv?.classList.remove('hidden');
+        contentDiv?.classList.add('hidden');
+        return;
+      }
+
+      const data = groupDoc.data();
+      const players = data.players;
+
+      noGroupDiv?.classList.add('hidden');
+      contentDiv?.classList.remove('hidden');
+
+      // Cargar partidos
+      const matchesRef = collection(db, 'groups', playersKey, 'matches');
+      const matchesSnapshot = await getDocs(matchesRef);
+      const matches = matchesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+      // Mostrar participantes
+      showParticipants(groupLetter, players);
+
+      // Calcular y mostrar tabla de posiciones
+      showStandings(groupLetter, players, matches);
+
+      // Mostrar historial
+      showMatchHistory(groupLetter, players, matches);
+
+      // Escuchar cambios en tiempo real
+      onSnapshot(doc(db, 'groups', playersKey), (doc) => {
+        if (doc.exists()) {
+          const data = doc.data();
+          const players = data.players || [];
+          
+          if (players.length > 0) {
+            noGroupDiv?.classList.add('hidden');
+            contentDiv?.classList.remove('hidden');
+            showParticipants(groupLetter, players);
+          }
+        }
+      });
+
+      // Escuchar cambios en partidos
+      onSnapshot(collection(db, 'groups', playersKey, 'matches'), async (snapshot) => {
+        const matches = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        
+        const groupDoc = await getDoc(doc(db, 'groups', playersKey));
+        if (groupDoc.exists()) {
+          const players = groupDoc.data().players || [];
+          showStandings(groupLetter, players, matches);
+          showMatchHistory(groupLetter, players, matches);
+        }
+      });
+
+    } catch (error) {
+      console.error(`Error cargando grupo ${groupLetter}:`, error);
+    }
+  }
+
+  function showParticipants(group, players) {
+    const container = document.getElementById(`participants${group}`);
+    if (!container) return;
+
+    container.innerHTML = players.map(player => `
+      <div class="bg-[var(--color-background)] p-4 rounded-lg shadow hover:scale-105 transition-transform">
+        <div class="flex flex-col items-center">
+          <img 
+            src="${player.photo || '/mascota.png'}" 
+            alt="${player.name}"
+            class="w-20 h-20 rounded-full object-cover border-4 border-[var(--color-accent)] mb-3 shadow-lg"
+          />
+          <div class="font-bold font-space-mono text-lg text-center">${player.name}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function showStandings(group, players, matches) {
+    const tbody = document.getElementById(`standings${group}`);
+    if (!tbody) return;
+
+    // Calcular estadísticas
+    players.forEach(player => {
+      player.played = 0;
+      player.wins = 0;
+      player.losses = 0;
+      player.points = 0;
+    });
+
+    matches.forEach((match) => {
+      const p1 = players.find(p => p.id === match.player1);
+      const p2 = players.find(p => p.id === match.player2);
+      
+      if (p1 && p2) {
+        p1.played++;
+        p2.played++;
+        
+        if (match.winner === match.player1) {
+          p1.wins++;
+          p1.points += 3;
+          p2.losses++;
+        } else {
+          p2.wins++;
+          p2.points += 3;
+          p1.losses++;
+        }
+      }
+    });
+
+    // Ordenar por puntos
+    const sorted = [...players].sort((a, b) => b.points - a.points);
+
+    tbody.innerHTML = sorted.map((player, index) => `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-3 font-bold">${index + 1}</td>
+        <td class="p-3 font-semibold">${player.name}</td>
+        <td class="p-3 text-center">${player.played}</td>
+        <td class="p-3 text-center text-green-600 font-bold">${player.wins}</td>
+        <td class="p-3 text-center text-red-600 font-bold">${player.losses}</td>
+        <td class="p-3 text-center font-bold" style="color: var(--color-accent)">${player.points}</td>
+      </tr>
+    `).join('');
+  }
+
+  function showMatchHistory(group, players, matches) {
+    const container = document.getElementById(`matchHistory${group}`);
+    if (!container) return;
+
+    if (matches.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 text-center">No hay partidos registrados</p>';
+      return;
+    }
+
+    container.innerHTML = matches.slice().reverse().map((match) => {
+      const p1Name = players.find(p => p.id === match.player1)?.name || 'Unknown';
+      const p2Name = players.find(p => p.id === match.player2)?.name || 'Unknown';
+      const winnerName = players.find(p => p.id === match.winner)?.name || 'Unknown';
+      
+      return `
+        <div class="bg-[var(--color-background)] p-4 rounded-lg">
+          <div class="flex justify-between items-center flex-wrap gap-2">
+            <div class="font-semibold">
+              <span class="${match.winner === match.player1 ? 'text-green-600 font-bold' : ''}">${p1Name}</span>
+              vs
+              <span class="${match.winner === match.player2 ? 'text-green-600 font-bold' : ''}">${p2Name}</span>
+            </div>
+            <div class="text-sm">
+              <span class="bg-[var(--color-accent)] text-white px-3 py-1 rounded-full">${match.game}</span>
+            </div>
+          </div>
+          <div class="text-sm text-gray-600 mt-2">
+            Ganador: <span class="font-bold text-green-600">${winnerName}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Cambio de tabs
+  document.querySelectorAll('.group-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const group = tab.getAttribute('data-group');
+      
+      // Actualizar tabs
+      document.querySelectorAll('.group-tab').forEach(t => {
+        t.classList.remove('active', 'bg-[var(--color-accent)]', 'text-white');
+        t.classList.add('bg-gray-300', 'text-gray-700');
+      });
+      tab.classList.add('active', 'bg-[var(--color-accent)]', 'text-white');
+      tab.classList.remove('bg-gray-300', 'text-gray-700');
+      
+      // Mostrar contenido
+      document.querySelectorAll('.group-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.querySelector(`.group-content[data-group="${group}"]`)?.classList.remove('hidden');
+    });
+  });
+
+  // Cargar todos los grupos al inicio
+  loadAllGroups();
+</script>
+
+<style>
+  .group-tab.active {
+    background-color: var(--color-accent);
+    color: white;
+  }
+</style>
+</BaseLayout>
