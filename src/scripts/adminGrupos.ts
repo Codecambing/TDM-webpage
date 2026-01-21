@@ -1,3 +1,5 @@
+console.log('🔥 adminGrupos.ts EJECUTADO');
+
 import { db } from '../utils/firebase';
 import {
   doc,
@@ -516,4 +518,3 @@ document.querySelectorAll<HTMLButtonElement>('.group-tab').forEach(tab => {
       ?.classList.remove('hidden');
   });
 });
-
