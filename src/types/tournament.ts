@@ -2,10 +2,10 @@ export interface Player {
   id: string;
   name: string;
   photo?: string;
-  played?: number;
-  wins?: number;
-  losses?: number;
-  points?: number;
+  played: number;
+  wins: number;
+  losses: number;
+  points: number;
 }
 
 export interface Match {
