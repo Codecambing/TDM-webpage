@@ -10,18 +10,21 @@ import type { Player, Match } from '../types/tournament';
     type QuerySnapshot
   } from 'firebase/firestore';
 
-  const GAME_BANNERS: Record<string, string> = {
-  "osu!": "banners/osu.png",
-  "WarioWare": "banners/warioware.png",
-  "Smash Bros": "banners/smash.png",
-  "Mario Kart": "banners/mariokart.png",
-  "Wii Sports": "banners/wiisport.png",
-  "Move or Die": "banners/moveordie.png",
-  "TETR.IO": "banners/tetrio.png",
-  "Mario Strikers": "banners/strikerscharged.png",
-  "Cachipún": "banners/cachipun.png",
-  "Chess Blitz": "banners/chessblitz.png",
+  const BASE = import.meta.env.BASE_URL;
+
+const GAME_BANNERS: Record<string, string> = {
+  "osu!": `${BASE}banners/osu.png`,
+  "WarioWare": `${BASE}banners/warioware.png`,
+  "Smash Bros": `${BASE}banners/smash.png`,
+  "Mario Kart": `${BASE}banners/mariokart.png`,
+  "Wii Sports": `${BASE}banners/wiisport.png`,
+  "Move or Die": `${BASE}banners/moveordie.png`,
+  "TETR.IO": `${BASE}banners/tetrio.png`,
+  "Mario Strikers": `${BASE}banners/strikerscharged.png`,
+  "Cachipún": `${BASE}banners/cachipun.png`,
+  "Chess Blitz": `${BASE}banners/chessblitz.png`,
 };
+
 
 function getGameBanner(game: string): string {
   return GAME_BANNERS[game] ?? '';
