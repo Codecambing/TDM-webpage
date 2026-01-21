@@ -25,11 +25,15 @@ interface Player {
   points: number;
 }
 
-interface Match {
+interface Match extends MatchData {
+  id: string;
+}
+
+interface MatchData {
   player1: string;
   player2: string;
-  game: string;
   winner: string;
+  game: string;
   timestamp: number;
 }
 
@@ -108,11 +112,18 @@ function initGroup(group: string): void {
     updateMatchSelects(group);
   });
 
-  onSnapshot(collection(db, 'groups', `group${group}`, 'matches'), snap => {
-    groupMatches[group] = snap.docs.map(d => d.data() as Match);
+  onSnapshot(
+  collection(db, 'groups', `group${group}`, 'matches'),
+  snap => {
+    groupMatches[group] = snap.docs.map(d => ({
+      id: d.id,
+      ...(d.data() as MatchData),
+    }));
+
     updateStandings(group);
     updateMatchHistory(group);
-  });
+  }
+);
 }
 
 /* ======================================================
@@ -189,7 +200,7 @@ document
         return;
       }
 
-      const match: Match = {
+      const match: MatchData = {
         player1: p1,
         player2: p2,
         game,
@@ -197,10 +208,10 @@ document
         timestamp: Date.now(),
       };
 
-      await addDoc(
+    await addDoc(
         collection(db, 'groups', `group${group}`, 'matches'),
         match
-      );
+        );
     });
   });
 
@@ -402,41 +413,107 @@ function updateMatchHistory(group: string): void {
   container.innerHTML = [...groupMatches[group]]
     .reverse()
     .map(match => {
-      const p1 = groupPlayers[group].find(p => p.id === match.player1)?.name ?? 'Unknown';
-      const p2 = groupPlayers[group].find(p => p.id === match.player2)?.name ?? 'Unknown';
-      const win = groupPlayers[group].find(p => p.id === match.winner)?.name ?? 'Unknown';
+      const p1 =
+        groupPlayers[group].find(p => p.id === match.player1)?.name ??
+        'Unknown';
+
+      const p2 =
+        groupPlayers[group].find(p => p.id === match.player2)?.name ??
+        'Unknown';
+
+      const win =
+        groupPlayers[group].find(p => p.id === match.winner)?.name ??
+        'Unknown';
 
       return `
-      <div class="bg-white p-4 rounded-lg shadow">
-        <div class="font-semibold">${p1} vs ${p2}</div>
-        <div class="text-sm">Juego: ${match.game}</div>
-        <div class="text-green-600 font-bold">Ganador: ${win}</div>
-      </div>`;
+        <div class="bg-white p-4 rounded-lg shadow space-y-1">
+          <div class="font-semibold">${p1} vs ${p2}</div>
+          <div class="text-sm">Juego: ${match.game}</div>
+          <div class="text-green-600 font-bold">
+            Ganador: ${win}
+          </div>
+
+          <!-- BOTÓN AQUÍ -->
+          <button
+            class="text-red-600 font-bold hover:underline delete-match-btn"
+            data-group="${group}"
+            data-id="${match.id}"
+          >
+            Eliminar
+          </button>
+        </div>
+      `;
     })
     .join('');
 }
 
+
+document.addEventListener('click', async (e) => {
+  const target = e.target as HTMLElement;
+
+  if (!target.classList.contains('delete-match-btn')) return;
+
+  const group = target.dataset.group;
+  const matchId = target.dataset.id;
+
+  if (!group || !matchId) return;
+
+  if (!confirm('¿Eliminar este partido?')) return;
+
+  try {
+    await deleteDoc(doc(db, 'groups', `group${group}`, 'matches', matchId));
+
+    console.log(`Match ${matchId} eliminado del grupo ${group}`);
+  } catch (err) {
+    console.error('Error eliminando match:', err);
+  }
+});
 /* ======================================================
    TABS
 ====================================================== */
 
-document.querySelectorAll('.group-tab').forEach(tab => {
+document.querySelectorAll<HTMLButtonElement>('.group-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    const group = tab.getAttribute('data-group');
+    const group = tab.dataset.group;
     if (!group) return;
 
-    document.querySelectorAll('.group-tab').forEach(t =>
-      t.classList.remove('bg-[var(--color-accent)]', 'text-white')
+    /* reset botones */
+    document.querySelectorAll<HTMLButtonElement>('.group-tab').forEach(t => {
+      t.classList.remove(
+        'bg-[var(--color-accent)]',
+        'text-white',
+        'hover:opacity-90'
+      );
+
+      t.classList.add(
+        'bg-gray-300',
+        'text-gray-700',
+        'hover:bg-gray-400'
+      );
+    });
+
+    /* activar botón clickeado */
+    tab.classList.remove(
+      'bg-gray-300',
+      'text-gray-700',
+      'hover:bg-gray-400'
     );
 
-    tab.classList.add('bg-[var(--color-accent)]', 'text-white');
+    tab.classList.add(
+      'bg-[var(--color-accent)]',
+      'text-white',
+      'hover:opacity-90'
+    );
 
-    document.querySelectorAll('.group-content').forEach(c =>
+    /* ocultar contenidos */
+    document.querySelectorAll<HTMLElement>('.group-content').forEach(c =>
       c.classList.add('hidden')
     );
 
+    /* mostrar grupo seleccionado */
     document
-      .querySelector(`.group-content[data-group="${group}"]`)
+      .querySelector<HTMLElement>(`.group-content[data-group="${group}"]`)
       ?.classList.remove('hidden');
   });
 });
+
