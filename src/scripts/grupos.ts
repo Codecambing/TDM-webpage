@@ -10,6 +10,23 @@ import type { Player, Match } from '../types/tournament';
     type QuerySnapshot
   } from 'firebase/firestore';
 
+  const GAME_BANNERS: Record<string, string> = {
+  "osu!": "banners/osu.png",
+  "WarioWare": "banners/warioware.png",
+  "Smash Bros": "banners/smash.png",
+  "Mario Kart": "banners/mariokart.png",
+  "Wii Sports": "banners/wiisport.png",
+  "Move or Die": "banners/moveordie.png",
+  "TETR.IO": "banners/tetrio.png",
+  "Mario Strikers": "banners/strikerscharged.png",
+  "Cachipún": "banners/cachipun.png",
+  "Chess Blitz": "banners/chessblitz.png",
+};
+
+function getGameBanner(game: string): string {
+  return GAME_BANNERS[game] ?? '';
+}
+
   /* ================================
     CARGA INICIAL
   ================================= */
@@ -198,30 +215,56 @@ import type { Player, Match } from '../types/tournament';
       const winnerName = players.find(p => p.id === match.winner)?.name ?? 'Unknown';
 
       return `
-        <div class="bg-[var(--color-background)] p-4 rounded-lg">
-          <div class="flex justify-between items-center flex-wrap gap-2">
-            <div class="font-semibold">
-              <span class="${match.winner === match.player1 ? 'text-green-600 font-bold' : ''}">
-                ${p1Name}
-              </span>
-              vs
-              <span class="${match.winner === match.player2 ? 'text-green-600 font-bold' : ''}">
-                ${p2Name}
-              </span>
-            </div>
-            <div class="text-sm">
-              <span class="bg-[var(--color-accent)] text-white px-3 py-1 rounded-full">
-                ${match.game}
-              </span>
-            </div>
-          </div>
-          <div class="text-sm text-gray-600 mt-2">
-            Ganador: <span class="font-bold text-green-600">${winnerName}</span>
-          </div>
+  <div
+    class="relative p-4 rounded-lg overflow-hidden shadow"
+    style="
+      background-image: url('${getGameBanner(match.game)}');
+      background-size: cover;
+      background-position: center;
+    "
+  >
+    <!-- overlay -->
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <!-- contenido -->
+    <div class="relative z-10">
+      <div class="flex justify-between items-center flex-wrap gap-2">
+        <div class="font-semibold text-white">
+          <span class="${
+            match.winner === match.player1
+              ? 'text-green-400 font-bold'
+              : 'text-white'
+          }">
+            ${p1Name}
+          </span>
+          vs
+          <span class="${
+            match.winner === match.player2
+              ? 'text-green-400 font-bold'
+              : 'text-white'
+          }">
+            ${p2Name}
+          </span>
         </div>
-      `;
-    }).join('');
-  }
+
+        <div class="text-sm">
+          <span class="bg-[var(--color-accent)] text-white px-3 py-1 rounded-full">
+            ${match.game}
+          </span>
+        </div>
+      </div>
+
+      <div class="text-sm text-gray-200 mt-2">
+        Ganador:
+        <span class="font-bold text-green-400">
+          ${winnerName}
+        </span>
+      </div>
+    </div>
+  </div>
+`}).join('')
+};
+
 
   /* ================================
     TABS
