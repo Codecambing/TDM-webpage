@@ -39,35 +39,8 @@ const games = [
 ---
 
 <BaseLayout title="Torre del Mago - Administración">
-  <!-- Modal de contraseña -->
-  <div id="passwordModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-    <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full mx-4">
-      <h2 class="text-2xl font-bold mb-4 font-space-mono text-center">
-        Acceso Restringido
-      </h2>
-      <p class="text-gray-600 mb-6 text-center">
-        Ingresa la contraseña para acceder al panel de grupos
-      </p>
-      <input 
-        type="password" 
-        id="passwordInput"
-        placeholder="Contraseña"
-        class="w-full p-3 border-2 border-gray-300 rounded-lg mb-4 font-semibold"
-      />
-      <button 
-        id="submitPassword"
-        class="w-full bg-[var(--color-accent)] text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition"
-      >
-        Entrar
-      </button>
-      <p id="errorMessage" class="text-red-600 text-sm mt-2 hidden text-center">
-        Contraseña incorrecta
-      </p>
-    </div>
-  </div>
-
   <!-- Contenido oculto inicialmente -->
-  <div id="adminContent" class="hidden">
+  <div id="adminContent">
     <section class="max-w-7xl mx-auto px-6 py-12">
     
     <h1 class="text-5xl font-bold text-center mb-12 font-space-mono text-[var(--color-text)]">
@@ -203,20 +176,17 @@ const games = [
               </select>
             </div>
             <div class="flex gap-4">
-              <button 
-                id="addMatchA"
-                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
-              >
+              <button id="addMatchA" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
                 Registrar Partido
               </button>
-              <button 
-                id="resetGroupA"
-                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
-              >
-                🗑️ Resetear Grupo
-              </button>
+                <button class="reset-matches-btn bg-yellow-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-yellow-700 transition" data-group="A">
+                  🔄 Resetear Partidos
+                </button>
+                <button class="reset-players-btn bg-red-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition" data-group="A">
+                  🗑️ Quitar Jugadores
+                </button>
+              </div>
             </div>
-          </div>
 
           <!-- Historial de Partidos -->
           <div>
@@ -266,10 +236,7 @@ const games = [
                 ))}
               </select>
             </div>
-            <button 
-              id="saveGroupB"
-              class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
-            >
+            <button data-group="B" class="save-group-btn mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition">
               Guardar Grupo B
             </button>
           </div>
@@ -329,17 +296,14 @@ const games = [
               </select>
             </div>
             <div class="flex gap-4">
-              <button 
-                id="addMatchB"
-                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
-              >
+              <button data-group="B" class="add-match-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
                 Registrar Partido
               </button>
-              <button 
-                id="resetGroupB"
-                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
-              >
-                🗑️ Resetear Grupo
+              <button class="reset-matches-btn bg-yellow-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-yellow-700 transition" data-group="B">
+                🔄 Resetear Partidos
+              </button>
+              <button class="reset-players-btn bg-red-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition" data-group="B">
+                🗑️ Quitar Jugadores
               </button>
             </div>
           </div>
@@ -353,7 +317,6 @@ const games = [
               <p class="text-gray-500 text-center">No hay partidos registrados</p>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -455,17 +418,14 @@ const games = [
               </select>
             </div>
             <div class="flex gap-4">
-              <button 
-                id="addMatchC"
-                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
-              >
+              <button id="addMatchC" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
                 Registrar Partido
               </button>
-              <button 
-                id="resetGroupC"
-                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
-              >
-                🗑️ Resetear Grupo
+              <button class="reset-matches-btn bg-yellow-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-yellow-700 transition" data-group="C">
+                🔄 Resetear Partidos
+              </button>
+              <button class="reset-players-btn bg-red-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition" data-group="C">
+                🗑️ Quitar Jugadores
               </button>
             </div>
           </div>
@@ -518,10 +478,7 @@ const games = [
                 ))}
               </select>
             </div>
-            <button 
-              id="saveGroupD"
-              class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
-            >
+            <button id="saveGroupD" class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition">
               Guardar Grupo D
             </button>
           </div>
@@ -581,17 +538,14 @@ const games = [
               </select>
             </div>
             <div class="flex gap-4">
-              <button 
-                id="addMatchD"
-                class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
-              >
+              <button id="addMatchD" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
                 Registrar Partido
               </button>
-              <button 
-                id="resetGroupD"
-                class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition"
-              >
-                🗑️ Resetear Grupo
+              <button class="reset-matches-btn bg-yellow-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-yellow-700 transition" data-group="D">
+                🔄 Resetear Partidos
+              </button>
+              <button class="reset-players-btn bg-red-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-800 transition" data-group="D">
+                🗑️ Quitar Jugadores
               </button>
             </div>
           </div>
@@ -611,10 +565,7 @@ const games = [
   </section>
 </BaseLayout>
 
-<script>
-  import { initAdminGroups } from '../scripts/administraciongrupos';
-  initAdminGroups();
-</script>
+<script type="module" src="/src/scripts/adminGrupos.ts"></script>
 
 <style>
   .group-tab.active {
