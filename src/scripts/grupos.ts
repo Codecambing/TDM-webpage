@@ -24,6 +24,20 @@ const GAME_BANNERS: Record<string, string> = {
   "Cachipún": `${BASE}banners/cachipun.png`,
   "Chess Blitz": `${BASE}banners/chessblitz.png`,
 };
+const previousStandings: Record<string, Map<string, number>> = {
+  A: new Map(),
+  B: new Map(),
+  C: new Map(),
+  D: new Map(),
+};
+
+function isGroupVisible(group: string): boolean {
+  const content = document.querySelector<HTMLElement>(
+    `.group-content[data-group="${group}"]`
+  );
+  return !!content && !content.classList.contains('hidden');
+}
+
 
 
 function getGameBanner(game: string): string {
@@ -150,8 +164,21 @@ function getGameBanner(game: string): string {
     players: Player[],
     matches: Match[]
   ): void {
+    const canAnimate = isGroupVisible(group);
     const tbody = document.getElementById(`standings${group}`);
     if (!tbody) return;
+
+    /* guardar posiciones anteriores */
+  if (canAnimate) {
+    Array.from(tbody.children).forEach((row, index) => {
+      const id = (row as HTMLElement).dataset.player;
+      if (id) previousStandings[group].set(id, index);
+    });
+  } else {
+  // sincroniza sin animar
+    previousStandings[group].clear();
+  }
+
 
     players.forEach((player: Player) => {
       player.played = 0;
@@ -180,23 +207,67 @@ function getGameBanner(game: string): string {
       }
     });
 
+    if (tbody.children.length === 0) {
+  players.forEach(player => {
+    const tr = document.createElement('tr');
+    tr.className = 'standings-row border-b transition-transform duration-300';
+    tr.dataset.player = player.id;
+
+    tr.innerHTML = `
+      <td class="p-3 font-bold"></td>
+      <td class="p-3 font-semibold"></td>
+      <td class="p-3 text-center"></td>
+      <td class="p-3 text-center text-green-600 font-bold"></td>
+      <td class="p-3 text-center text-red-600 font-bold"></td>
+      <td class="p-3 text-center font-bold" style="color: var(--color-accent)"></td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
     const sorted: Player[] = [...players].sort(
       (a, b) => (b.points ?? 0) - (a.points ?? 0)
     );
 
-    tbody.innerHTML = sorted.map((player, index) => `
-      <tr class="border-b hover:bg-gray-50">
-        <td class="p-3 font-bold">${index + 1}</td>
-        <td class="p-3 font-semibold">${player.name}</td>
-        <td class="p-3 text-center">${player.played}</td>
-        <td class="p-3 text-center text-green-600 font-bold">${player.wins}</td>
-        <td class="p-3 text-center text-red-600 font-bold">${player.losses}</td>
-        <td class="p-3 text-center font-bold" style="color: var(--color-accent)">
-          ${player.points}
-        </td>
-      </tr>
-    `).join('');
+sorted.forEach((player, index) => {
+  const row = tbody.querySelector<HTMLElement>(
+    `[data-player="${player.id}"]`
+  );
+  if (!row) return;
+
+  const cells = row.children;
+  cells[0].textContent = String(index + 1);
+  cells[1].textContent = player.name;
+  cells[2].textContent = String(player.played);
+  cells[3].textContent = String(player.wins);
+  cells[4].textContent = String(player.losses);
+  cells[5].textContent = String(player.points);
+
+  tbody.appendChild(row);
+});
+
+if (!canAnimate) return;
+
+Array.from(tbody.children).forEach((row, newIndex) => {
+
+  const id = (row as HTMLElement).dataset.player;
+  if (!id) return;
+
+  const oldIndex = previousStandings[group].get(id);
+  if (oldIndex === undefined) return;
+
+  const diff = oldIndex - newIndex;
+  if (diff !== 0) {
+    const el = row as HTMLElement;
+    el.style.transform = `translateY(${diff * 48}px)`;
+    requestAnimationFrame(() => {
+      el.style.transform = '';
+    });
   }
+});
+}
+  
 
   function showMatchHistory(
     group: string,
@@ -277,6 +348,8 @@ function getGameBanner(game: string): string {
     tab.addEventListener('click', () => {
       const group = tab.dataset.group;
       if (!group) return;
+
+      previousStandings[group].clear();
 
       document.querySelectorAll('.group-tab').forEach(t => {
         t.classList.remove('active', 'bg-[var(--color-accent)]', 'text-white');
